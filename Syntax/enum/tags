@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+enumvalue	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^enum enumvalue{$/;"	g	file:
+fir	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ fir=1,$/;"	e	enum:enumvalue	file:
+fiv	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ fiv,$/;"	e	enum:enumvalue	file:
+four	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ four=5,$/;"	e	enum:enumvalue	file:
+fri	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ fri,$/;"	e	enum:weekday	file:
+main	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^int  main()$/;"	f
+mon	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ mon,$/;"	e	enum:weekday	file:
+sat	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ sat$/;"	e	enum:weekday	file:
+sec	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ sec,   \/\/后面的值是前面的值增1,除非对某个量执行了赋值操作$/;"	e	enum:enumvalue	file:
+six	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ six=6$/;"	e	enum:enumvalue	file:
+sun	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ sun,$/;"	e	enum:weekday	file:
+thi	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ thi,  $/;"	e	enum:enumvalue	file:
+thur	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ thur,$/;"	e	enum:weekday	file:
+tue	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^ tue,$/;"	e	enum:weekday	file:
+weekday	/home/bleach/C语言程序设计/Syntax/enum/main.c	/^enum weekday{$/;"	g	file:

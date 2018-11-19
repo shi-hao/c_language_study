@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+GetAge	/home/bleach/C语言程序设计/Syntax/define/main.c	12;"	d	file:
+GetAge	/home/bleach/C语言程序设计/Syntax/define/main.c	14;"	d	file:
+PI	/home/bleach/C语言程序设计/Syntax/define/usrdef.h	11;"	d
+USRDEF	/home/bleach/C语言程序设计/Syntax/define/usrdef.h	3;"	d
+__anon1::age	/home/bleach/C语言程序设计/Syntax/define/main.c	/^	int age;$/;"	m	struct:__anon1	file:	access:public
+__anon1::sex	/home/bleach/C语言程序设计/Syntax/define/main.c	/^	int sex;$/;"	m	struct:__anon1	file:	access:public
+age	/home/bleach/C语言程序设计/Syntax/define/main.c	/^	int age;$/;"	m	struct:__anon1	file:	access:public
+before	/home/bleach/C语言程序设计/Syntax/define/usrdef.h	16;"	d
+main	/home/bleach/C语言程序设计/Syntax/define/main.c	/^void main(int argc,  char* argv[]){$/;"	f	signature:(int argc, char* argv[])
+max	/home/bleach/C语言程序设计/Syntax/define/main.c	/^} max={10,0}, *p;$/;"	v	typeref:struct:__anon1
+p	/home/bleach/C语言程序设计/Syntax/define/main.c	/^} max={10,0}, *p;$/;"	v	typeref:struct:__anon1
+plus	/home/bleach/C语言程序设计/Syntax/define/usrdef.h	14;"	d
+process	/home/bleach/C语言程序设计/Syntax/define/usrdef.h	25;"	d
+sex	/home/bleach/C语言程序设计/Syntax/define/main.c	/^	int sex;$/;"	m	struct:__anon1	file:	access:public
+toStr2	/home/bleach/C语言程序设计/Syntax/define/usrdef.h	22;"	d

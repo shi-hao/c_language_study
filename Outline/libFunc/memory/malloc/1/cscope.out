@@ -1,0 +1,346 @@
+cscope 15 $HOME/CËØ≠Ë®ÄÁ®ãÂ∫èËÆæËÆ°/Outline/libFunc/memory/malloc/1 -q 0000000029 0000001527
+	@main.c
+
+4 
+	~<°rög.h
+>
+
+5 
+	~<°dio.h
+>
+
+6 
+	~<°dlib.h
+>
+
+8 
+	sbuf„r
+{
+
+9 
+	mˇ∑côy
+;
+
+10 
+	mÀn
+;
+
+11 
+	moff£t
+;
+
+12 * 
+	md©a
+;
+
+13 } 
+	tbuf„r
+;
+
+15 
+	sc⁄ãxt_buf„r
+{
+
+16 
+buf„r
+ 
+	möcomög_d©a
+;
+
+17 
+buf„r
+ 
+	moutcomög_d©a
+;
+
+18 
+buf„r
+ 
+	mŸhî_d©a
+;
+
+19 } 
+	tc⁄ãxt_buf„r
+;
+
+21 
+	sc_2
+{
+
+22 
+c⁄ãxt_buf„r
+ * 
+	mbuf„rs
+;
+
+23 
+buf„r
+ 
+	mbuf
+;
+
+24 } 
+	tc_2
+;
+
+26 
+	sôem
+{
+
+27 
+buf„r
+ * 
+	mbuff
+;
+
+30 
+	s£t
+{
+
+31 
+	mˇ∑côy
+;
+
+32 
+	mÀn
+;
+
+33 
+	moff£t
+;
+
+34 
+ôem
+ * 
+	m¨øy
+;
+
+38 
+	tmaö
+()
+
+40 
+	#ˇ∑côy_u§
+ 100
+
+	)
+
+41 
+c_2
+ 
+cc
+;
+
+42 
+c⁄ãxt_buf„r
+ 
+m
+;
+
+44 
+m
+.
+öcomög_d©a
+.
+d©a
+ = (*)
+	`mÆloc
+(
+ˇ∑côy_u§
+);
+
+45 
+m
+.
+öcomög_d©a
+.
+ˇ∑côy
+ = 
+ˇ∑côy_u§
+;
+
+46 
+m
+.
+öcomög_d©a
+.
+Àn
+ = 0;
+
+47 
+m
+.
+öcomög_d©a
+.
+off£t
+ = 0;
+
+49 
+cc
+.
+buf„rs
+ = &
+m
+;
+
+50 
+cc
+.
+buf
+ = cc.
+buf„rs
+->
+öcomög_d©a
+;
+
+52 *(
+cc
+.
+buf
+.
+d©a
+) = 0xfe;
+
+53 
+cc
+.
+buf
+.
+Àn
+ = 1;
+
+55 
+	`¥ötf
+("\¿cc.buf.ˇ∑côy = %d\n", 
+cc
+.
+buf
+.
+ˇ∑côy
+);
+
+56 
+	`¥ötf
+("\¿cc.buf.À¿%d\n", 
+cc
+.
+buf
+.
+Àn
+);
+
+57 
+	`¥ötf
+("\¿cc.buf.d©a[0] = %#.2x\n", (
+cc
+.
+buf
+.
+d©a
+)[0]);
+
+60 
+buf„r
+ 
+m_buf
+;
+
+61 
+£t
+ 
+m_£t
+;
+
+62 
+ôem
+ 
+m_ôem
+;
+
+65 
+m_buf
+.
+d©a
+ = (*)
+	`mÆloc
+((Ë* 
+ˇ∑côy_u§
+);
+
+66 
+m_buf
+.
+ˇ∑côy
+ = 
+ˇ∑côy_u§
+;
+
+69 
+m_£t
+.
+¨øy
+ = (
+ôem
+*)
+	`mÆloc
+((ôemË* 
+ˇ∑côy_u§
+);
+
+70 
+m_£t
+.
+ˇ∑côy
+ = 
+ˇ∑côy_u§
+;
+
+71 
+m_£t
+.
+Àn
+ = 0;
+
+74 
+m_ôem
+.
+buff
+ = &
+m_buf
+;
+
+77 
+m_£t
+.
+¨øy
+[0] = 
+m_ôem
+;
+
+78 
+m_£t
+.
+Àn
+++;
+
+81 
+	`‰ì
+(
+m
+.
+öcomög_d©a
+.
+d©a
+);
+
+82 
+	}
+}
+
+	@
+1
+.
+0
+1
+7
+main.c
