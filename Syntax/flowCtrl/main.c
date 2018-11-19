@@ -4,15 +4,15 @@
 
 void  main()
 {
-  //unsigned char flow=1;
+	//unsigned char flow=1;
 	int cnt=0;
 	unsigned char ch;
- 
-  /*break*/
+
+	/*break*/
 	//break; //随便的break是不允许的
 	for(;;)
 	{
-	  printf("i am break\n");
+		printf("i am break\n");
 		break;
 	}
 
@@ -21,14 +21,14 @@ void  main()
 	//continue;  //随便的continue是不允许的
 	for(;cnt<5;cnt++)
 	{
-	   printf("i am continue\n");
-		 continue;
-	   printf("i am continue again?\n");
+		printf("i am continue\n");
+		continue;
+		printf("i am continue again?\n");
 	}
 
 
-  /*return*/
-  ch = getchar();
+	/*return*/
+	ch = getchar();
 	if(ch == 'a')
 		return;
 	else
@@ -43,7 +43,7 @@ void  main()
 		goto exit;
 quit:
 	{
-	  printf("i am quit\n");
+		printf("i am quit\n");
 	}
 	printf("i am quit again?\n");
 exit:

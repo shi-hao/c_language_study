@@ -27,7 +27,6 @@ void main(int argc,  char* argv[]){
 	printf("max age is %d\n", tmp);
 	printf(" %s\n", toStr2(i am good) "?");
 
-
 	tmp = 0;
 	printf("((tmp++)<1)=%d\n", (tmp++)<1);
 	printf("((++tmp)<1)=%d\n", (++tmp)<1);

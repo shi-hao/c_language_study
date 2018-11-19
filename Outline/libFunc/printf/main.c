@@ -23,7 +23,7 @@ void main()
 
 
 	/*  十进制输出 %d */
-	//%d  char  short short
+	//%d  char   short
 	printf("var_int=%d\n",var_int);
 	printf("var_short=%d\n",var_short);
 	printf("var_char=%d\n",var_char);
@@ -49,7 +49,6 @@ void main()
 	printf("var_char=%c\n",var_char=65);
 	//%s char*
 	printf("string is = %s\n","i am string");
-
 
 	//计算顺序
 	printf("var_unint=%u, var_unint++=%u\n",var_unint,var_unint++);

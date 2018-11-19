@@ -13,6 +13,7 @@ void main()
 
 	/*基本数据类型占用字节数*/
 	printf("sizeof(char)=%ld\n", sizeof(char));
+	printf("sizeof(short)=%ld\n", sizeof(short));
 	printf("sizeof(int)=%ld\n", sizeof(int));
 	printf("sizeof(long)=%ld\n", sizeof(long));
 	printf("sizeof(float)=%ld\n", sizeof(float));

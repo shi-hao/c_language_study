@@ -4,26 +4,26 @@
 #if 1
 extern "C" 
 {
-  int fun1();
+	int fun1();
 }
 #else
-  extern int fun1();
+extern int fun1();
 #endif
 /*声明一个在c源文件中定义的变量*/
 #if 0
 extern "C"
 {
-  int a;
+	int a;
 }
 #else
- extern int a;
+extern int a;
 #endif
 int b;
 
 
 int main()
 {
-  fun1();
-  printf("a=%d\n",a);
-  return 0;
+	fun1();
+	printf("a=%d\n",a);
+	return 0;
 }

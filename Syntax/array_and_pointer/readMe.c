@@ -14,6 +14,7 @@
  */
 
 #include<stdio.h>
+#include<stdlib.h>
 
 int main(){
 
@@ -27,8 +28,8 @@ int main(){
 	p = &var;
 	p = "i am a string";
 
-	printf("\narray is %s", array);
-	printf("\np is %s", p);
+	printf("\narray is %s\n", array);
+	printf("\np is %s\n", p);
 
 
 	//数组和动态内存分配
