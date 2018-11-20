@@ -10,7 +10,6 @@ volatile int *reg = (int *)0x00000001;
 
 //#define reg2 (int *)0x00000001 
 
-
 void main()
 {	
 	//

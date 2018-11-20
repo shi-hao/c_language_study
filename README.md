@@ -10,4 +10,4 @@
 
 	个人主页：www.shihao10.com
 
-	知乎主页：https://www.zhihu.com/people/han-tu-28/activities
+	知乎主页：https://github.com/shi-hao
