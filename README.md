@@ -10,4 +10,4 @@
 
 	个人主页：www.shihao10.com
 
-	知乎主页：https://github.com/shi-hao
+	知乎专栏：https://zhuanlan.zhihu.com/c_86372362

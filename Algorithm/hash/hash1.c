@@ -3,7 +3,7 @@
 #include<string.h>
 
 
-#define PRIME_TBLSIZE  256
+#define PRIME_TBLSIZE  1024
 
 unsigned int hashpjw(const void *key){
 	const char *ptr;
@@ -46,7 +46,9 @@ void insert_node(unsigned char ** table, unsigned char * str){
 int main(int argc, char * argv[]){
 #define str_size  6
 
-	unsigned char * hash_table[256];
+	unsigned int tmp;
+	unsigned char * hash_table[PRIME_TBLSIZE];
+
 	unsigned char * str[str_size]={
 		"i am bob",
 		"you are dady",
@@ -55,7 +57,6 @@ int main(int argc, char * argv[]){
 		"shihao",
 		"ting"
 	};
-	unsigned int tmp;
 
 	if(argc < 2){
 		printf("\n inpute the hash string \n");
