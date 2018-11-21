@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+#include<unistd.h>
 
 /*
  * 使用哈希表的算法思路，实现数据库内的字符串检索
@@ -43,7 +43,7 @@ unsigned int hashpjw(const void *key){
 
 //哈希表中插入哈希值
 //字符串哈希后的哈希值作为数组的索引值，对应数组中的内容是字符串在文件中的行号
-void insert_node(unsigned int* table, unsigned char * str, long row){
+int insert_node(unsigned int* table, unsigned char * str, long row){
 
 	unsigned int tmp;
 
@@ -52,8 +52,10 @@ void insert_node(unsigned int* table, unsigned char * str, long row){
 	if( table[tmp] == empty_flag){
 		table[tmp] = row;
 		printf("\n  insert  table[%d]=%d:%s \n", tmp, table[tmp], str);
+		return 1;
 	}else{
 		printf("\n  collision  table[%d]=%d:%s \n", tmp, table[tmp], str);
+		return 0;
 	}
 }
 
@@ -104,10 +106,11 @@ int main(int argc, char * argv[]){
 	char buffer[MAX_CHAR_COUNT];
 	unsigned int  tmp;
 	unsigned int  hash_table[PRIME_TBLSIZE];
+	int ret;
 
 	char inpute_str[MAX_CHAR_COUNT];
 
-	if((data_base = fopen("data_base.txt", "r")) == NULL){
+	if((data_base = fopen("data_base.txt", "a+")) == NULL){
 		printf("\n open data base failed \n");
 		return -1;
 	}
@@ -124,11 +127,23 @@ int main(int argc, char * argv[]){
 
 	//check the input string
 	while(scanf("%s", inpute_str)){
-		tmp = hashpjw(inpute_str);
-		if(hash_table[tmp] != empty_flag)
-			printf("\n input string is in the data base \n");
-		else 
+		if(insert_node(hash_table, inpute_str, row))
+		{
 			printf("\n input string is NOT in the data base \n");
+
+			//write the string into the data base
+			if(fprintf(data_base,"%s\n",inpute_str) <= 0)
+				printf("\n write the string to the data base failed \n");
+			fflush(data_base);
+			//fsync(data_base);
+			row++;
+		}
+		else
+		{
+			printf("\n Collision: same string in the data_base OR different strings have same hash value! \n");
+		}
 	}
+
+	fclose(data_base);
 	printf("\n exit \n");
 }

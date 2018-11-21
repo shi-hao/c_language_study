@@ -194,8 +194,9 @@ void main()
 	printf("fread str=%s\n",str);
 
 	//格式化写文件
-	fprintf(fileW,"\n%d",666);
-	fprintf(fileW,"\n%s","i am shi hao");
+	fprintf(fileW,"%d\n",666);
+	fprintf(fileW,"%s\n","i am shi hao");
+	fprintf(filerr,"%s\n","i am shi hao");
 
 	/*关闭文件*/
 	fclose(file);
