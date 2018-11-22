@@ -14,5 +14,4 @@ e-mail  : shi7631470@163.com
 
 微信号  ：shi706734862
 
-![wechat with me](https://github.com/shi-hao/c_language_study/blob/master/chatME.jpg)
-<img src="https://github.com/shi-hao/c_language_study/blob/master/chatME.jpg" width="300" height="450" />
+<img src="https://github.com/shi-hao/c_language_study/blob/master/chatME.jpg" width="250" height="400" />
