@@ -71,5 +71,4 @@ int main(int argc, char * argv[]){
 
 	tmp = hashpjw(argv[1]);
 	printf("\n %s : %s\n", argv[1], hash_table[hashpjw(argv[1])]);
-
 }

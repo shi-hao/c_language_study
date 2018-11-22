@@ -51,10 +51,10 @@ int insert_node(unsigned int* table, unsigned char * str, long row){
 
 	if( table[tmp] == empty_flag){
 		table[tmp] = row;
-		printf("\n  insert  table[%d]=%d:%s \n", tmp, table[tmp], str);
+		printf("\n  insert  table[%d]=%d:%s", tmp, table[tmp], str);
 		return 1;
 	}else{
-		printf("\n  collision  table[%d]=%d:%s \n", tmp, table[tmp], str);
+		printf("\n  collision  table[%d]=%d:%s", tmp, table[tmp], str);
 		return 0;
 	}
 }
@@ -125,11 +125,12 @@ int main(int argc, char * argv[]){
 		memset(buffer, 0, MAX_CHAR_COUNT * sizeof(char));
 	}
 
+	printf("\n");
 	//check the input string
 	while(scanf("%s", inpute_str)){
 		if(insert_node(hash_table, inpute_str, row))
 		{
-			printf("\n input string is NOT in the data base \n");
+			printf("\n input string is NOT in the data base, write it into data base \n");
 
 			//write the string into the data base
 			if(fprintf(data_base,"%s\n",inpute_str) <= 0)

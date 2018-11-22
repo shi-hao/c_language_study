@@ -1,10 +1,10 @@
 # c_language_study
 
-	study the language C
+## study the language C
 
 本项目主要包含一些C语言的知识点编程例子，旨在提高编程水平，不断更新中，欢迎交流，互相学习！
 
-	联系方式
+## 联系方式
 
 e-mail  : shi7631470@163.com
 
