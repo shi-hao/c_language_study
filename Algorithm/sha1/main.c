@@ -3,8 +3,8 @@
 #include<string.h>
 
 //位(bit), 字节(byte), 字(32位)
-#define   sha1_word              unsigned int 
-#define   sha1_block_size_byte   64  
+#define   sha1_word               unsigned int 
+#define   sha1_block_size_byte    64  
 
 //循环左移运算
 #define  S(n, x)  ((n>=0 && n<=32)?((x<<n) | (x>>(32-n))):(0))
@@ -28,7 +28,6 @@ typedef struct _buffer_{
 
 //原始数据增补bit位数
 int hash_add_bit(buffer_p buff){
-
 	int add_byte;
 
 	if((buff->len % sha256_mod_val) < sha256_mod_val2)
@@ -36,16 +35,17 @@ int hash_add_bit(buffer_p buff){
 	else 
 		add_byte = sha256_mod_val + sha256_mod_val2 - (buff->len % sha256_mod_val);
 
-	if((buff->len + add_byte) <= buff->capacity)
+	if((buff->len + add_byte) <= buff->capacity){
 		(buff->data)[buff->len] = 0x80;
-	buff->len += add_byte;
-
-	return add_byte;
+		buff->len += add_byte;
+		return add_byte;
+	}else 
+		return -1;
 }
 
 //检测大小端，返回-1,表示小端，返回1,则是大端
 int checkEndian(){
-	
+
 	unsigned short var = 0x11ff;
 	if(*((unsigned char*)&var) == 0xff)
 		return -1;
@@ -161,18 +161,18 @@ int main(int argc, char* argv[]){
 		//每个块512位，16个字，w0 w1 ... w15
 		memset(buf_W, 0, 80);
 		memcpy(buf_W, mbuff.data+tmp, sha1_block_size_byte);
-		
+
 		if(checkEndian() == -1){
-			printf("\n swap \n");
+			printf("\n swap data endian\n");
 			for(int ccnt=0; ccnt<16; ccnt++)
 				buf_W[ccnt] = swap32endian(buf_W[ccnt]);
 		}else{
 			printf("\n big endian \n");
 		}
 
-//		printf("%#x\n", *(unsigned char*)buf_W);
-//		printf("%#x\n", *((unsigned char*)buf_W+1));
-//		printf("%#x\n", buf_W[0]);
+		//		printf("%#x\n", *(unsigned char*)buf_W);
+		//		printf("%#x\n", *((unsigned char*)buf_W+1));
+		//		printf("%#x\n", buf_W[0]);
 
 		//每个块512位，16个字，w0 w1 ... w15，将每个块扩展到80个字
 		for(unsigned long cnt=16;cnt<80;cnt++)
@@ -223,5 +223,5 @@ int main(int argc, char* argv[]){
 	printf("\nsha1 hash is: %x %x %x %x %x\n", buf_H[0], buf_H[1], buf_H[2], buf_H[3], buf_H[4]);
 
 	//printf_buffer(&mbuff);
-//	printf("\nS(1, 0x80000000)=%#x\n", S(1, 0x80000000));
+	//	printf("\nS(1, 0x80000000)=%#x\n", S(1, 0x80000000));
 }
