@@ -1,3 +1,6 @@
+/*
+ * sha1 算法
+ */
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -5,11 +8,15 @@
 //位(bit), 字节(byte), 字(32位)
 #define   sha1_word               unsigned int 
 #define   sha1_block_size_byte    64  
+#define   sha1_block_size_bit     512
+#define   sha1_block_size_word    8
+
+#define   sha1_out_size_word    5
 
 //循环左移运算
 #define  S(n, x)  ((n>=0 && n<=32)?((x<<n) | (x>>(32-n))):(0))
 
-#define swap32endian(a)	  (((a&0x000000ff)<<24) | ((a&0x0000ff00)<<8) | ((a&0x00ff0000)>>8) | ((a&0xff000000)>>24))
+#define swap32endian(a)	  (((a&0x000000ff)<<24)|((a&0x0000ff00)<<8)|((a&0x00ff0000)>>8)|((a&0xff000000)>>24))
 
 //数据缓存
 typedef struct _buffer_{
@@ -26,6 +33,17 @@ typedef struct _buffer_{
 #define  sha256_bit_add     0x80
 #define  buffer_size        1024
 
+//检测大小端，返回-1,表示小端，返回1,则是大端
+int checkEndian(){
+
+	unsigned short var = 0x11ff;
+	if(*((unsigned char*)&var) == 0xff)
+		return -1;
+	else 
+		return 1;
+}
+
+//============================================================
 //原始数据增补bit位数
 int hash_add_bit(buffer_p buff){
 	int add_byte;
@@ -43,15 +61,6 @@ int hash_add_bit(buffer_p buff){
 		return -1;
 }
 
-//检测大小端，返回-1,表示小端，返回1,则是大端
-int checkEndian(){
-
-	unsigned short var = 0x11ff;
-	if(*((unsigned char*)&var) == 0xff)
-		return -1;
-	else 
-		return 1;
-}
 
 //增补后的数据，增加数据长度bit位长度 
 int hash_add_data_len(buffer_p buff, unsigned long len){
@@ -77,6 +86,16 @@ int hash_add_data_len(buffer_p buff, unsigned long len){
 #endif
 }
 
+//打印哈希值
+int mprintHash(sha1_word* data, int word_len, char* name){
+
+	printf("\n %d-bit %s value is \n",word_len*4*8, name);
+	for(int i=0; i<word_len; i++)
+		printf(" %#.8x ", data[i]);
+	printf("\n");
+}
+
+//==================================================
 //初始化buffer
 int buffer_init(buffer_p buff){
 
@@ -111,6 +130,8 @@ int printf_buffer(buffer_p buff){
 
 int main(int argc, char* argv[]){
 
+#define buf_W_size 80
+
 	unsigned char  orginal_data[1024]="sfsffffffffffffffffffffffffssssssssssssssssf";
 	unsigned long  data_len;
 	unsigned char* data;
@@ -119,14 +140,14 @@ int main(int argc, char* argv[]){
 	buffer mbuff;
 
 	sha1_word param_A, param_B, param_C, param_D, param_E;
-	sha1_word buf_H[5]={
+	sha1_word buf_H[sha1_out_size_word]={
 		0x67452301,
 		0xEFCDAB89,
 		0x98BADCFE,
 		0x10325476,
 		0xC3D2E1F0,
 	};
-	sha1_word buf_W[80]={0};
+	sha1_word buf_W[buf_W_size]={0};
 	sha1_word F,K;
 
 	if(argc < 2)
@@ -152,8 +173,10 @@ int main(int argc, char* argv[]){
 
 	//printf_buffer(&mbuff);
 
+	//	printf("\nS(1, 0x80000000)=%#x\n", S(1, 0x80000000));
+
 	m_bit_len = mbuff.len * 8;
-	m_block_size = m_bit_len / 512;
+	m_block_size = m_bit_len / sha1_block_size_bit;
 	printf("\n message bit len = %ld, block size = %ld \n", m_bit_len, m_block_size);
 
 	for(unsigned long tmp=0; tmp<mbuff.len; tmp+=sha1_block_size_byte)
@@ -220,8 +243,5 @@ int main(int argc, char* argv[]){
 		buf_H[4] += param_E;
 	}
 
-	printf("\nsha1 hash is: %x %x %x %x %x\n", buf_H[0], buf_H[1], buf_H[2], buf_H[3], buf_H[4]);
-
-	//printf_buffer(&mbuff);
-	//	printf("\nS(1, 0x80000000)=%#x\n", S(1, 0x80000000));
+	mprintHash(buf_H, sha1_out_size_word, "sha1");
 }

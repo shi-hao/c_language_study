@@ -11,6 +11,8 @@
 #define   sha256_block_size_byte    64  
 #define   sha256_block_size_word    8
 
+#define   sha256_out_size_word      8
+
 //循环左移运算
 #define  SL(n, x)  ((n>=0 && n<=32)?((x<<n) | (x>>(32-n))):(0))
 #define  SR(n, x)  ((n>=0 && n<=32)?((x>>n) | (x<<(32-n))):(0))
@@ -163,7 +165,7 @@ int main(int argc, char* argv[]){
 		0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 
 		0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
 	};
-	sha256_word buf_H[sha256_block_size_word]={
+	sha256_word buf_H[sha256_out_size_word]={
 		0x6a09e667,
 		0xbb67ae85,
 		0x3c6ef372,
@@ -271,5 +273,5 @@ int main(int argc, char* argv[]){
 	}
 
 	buffer_free(&mbuff);
-	mprintHash(buf_H, sha256_block_size_word, "sha256");
+	mprintHash(buf_H, sha256_out_size_word, "sha256");
 }
