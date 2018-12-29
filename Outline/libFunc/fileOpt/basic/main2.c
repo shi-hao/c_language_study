@@ -126,7 +126,7 @@ int mmyfscanf(FILE* file, char* format, char buf[], int bufSize)
 		cnt++;
 	}
 }
-
+#define buf_len 256
 void main()
 {
 	FILE* file;
@@ -135,7 +135,7 @@ void main()
 	FILE* filerr;
 	int pre[200], cur[6], fut[6];
 	int cnt;
-	char str[100]={0};
+	char str[buf_len]={0};
 
 	/*打开文件-update mode reading and writing*/
 	file = fopen("data.txt", "a+");
@@ -147,9 +147,16 @@ void main()
 
 	//测试读取文件一行函数
 	int ret;
-	while((ret = mmyfscanf(file,"%c",str,100)) >= 0){
+	while((ret = mmyfscanf(file,"%c",str,buf_len)) >= 0){
 		printf("myfscanf %d str:%s\n",ret,str);
 		memset(str,0,100);
+	}
+
+	fseek(file, 0, SEEK_SET);
+
+	//读取一行数据
+	while(fgets(str, buf_len, file)){
+		printf("fgets str:%s\n",str);
 	}
 
 	/*关闭文件*/
