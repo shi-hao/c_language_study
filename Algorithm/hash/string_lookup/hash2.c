@@ -43,18 +43,17 @@ unsigned int hashpjw(const void *key){
 
 //哈希表中插入哈希值
 //字符串哈希后的哈希值作为数组的索引值，对应数组中的内容是字符串在文件中的行号
-int insert_node(unsigned int* table, unsigned char * str, long row){
+int insert_node(unsigned int* table, unsigned char * str, unsigned int row){
 
-	unsigned int tmp;
+	unsigned int hash;
+	hash = hashpjw(str);
 
-	tmp = hashpjw(str);
-
-	if( table[tmp] == empty_flag){
-		table[tmp] = row;
-		printf("\n  insert  table[%d]=%d:%s", tmp, table[tmp], str);
+	if( table[hash] == empty_flag){
+		table[hash] = row;
+		printf("\n  insert  table[%d]=%d, %s", hash, table[hash], str);
 		return 1;
 	}else{
-		printf("\n  collision  table[%d]=%d:%s", tmp, table[tmp], str);
+		printf("\n  collision  table[%d]=%d, %s", hash, table[hash], str);
 		return 0;
 	}
 }
@@ -119,7 +118,13 @@ int main(int argc, char * argv[]){
 	memset(buffer, 0, MAX_CHAR_COUNT * sizeof(char));
 	memset(hash_table, empty_flag, PRIME_TBLSIZE * sizeof(unsigned int));
 	unsigned int row=0;
-	while(mmyfscanf(data_base,"%c",buffer,MAX_CHAR_COUNT-1) >= 0){
+	//while(mmyfscanf(data_base,"%c",buffer,MAX_CHAR_COUNT-1) >= 0){
+	//	row++;
+	//	insert_node(hash_table, buffer, row);
+	//	memset(buffer, 0, MAX_CHAR_COUNT * sizeof(char));
+	//}
+	while(fgets(buffer, MAX_CHAR_COUNT, data_base)){
+		buffer[strlen(buffer) - 1] = 0;
 		row++;
 		insert_node(hash_table, buffer, row);
 		memset(buffer, 0, MAX_CHAR_COUNT * sizeof(char));
