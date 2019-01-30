@@ -33,75 +33,51 @@
  * c库缓冲-----fflush---------〉内核缓冲--------fsync-----〉磁盘
  ***********************************************************************************
  */
-
 #include<stdio.h>
 #include<stdlib.h>
+#include<unistd.h>
+#include<signal.h>
 
+static int cnt = 0;
+#define  string     "666"
+#define  filename   "dataW.txt"
 
-/*
- * 功能  ：格式化读取文件的一行数据，不包括换行符
- * 返回值：一行数据的字节数 
- *         >0 读取到的字节数 
- *         =0 空行，没有内容，只有换行符
- *         <0 文件结束，缓存大小错误
- * 参数： FILE* file  文件指针 
- *        char* format 读取数据的格式，参考fscanf（）
- *        char buf[]   读取数据的存储缓存 
- *        int  bufSize 缓存buf[]的大小
- */
-int myfscanf(FILE* file, char* format, char buf[], int bufSize)
+void sig_handler(int signo)
 {
-	int cnt=0;
-
-	if(bufSize<1)
-		return -1;//缓存大小错误 
-
-	cnt=0;
-	fscanf(file,format,buf+cnt);
-
-	while(feof(file)!=1){
-
-		if((buf[cnt]=='\n') || (buf[cnt]=='\r')) //文件换行符，'\n' '\r'
-		{
-			buf[cnt]='\0';
-			return cnt;
-		}
-
-		cnt++;
-		if(cnt>=bufSize)//判断缓存大小  
-			return bufSize;
-
-		fscanf(file,format,buf+cnt);
-	}
-
-	return -1;//文件结束返回  
-}
+	printf("\n write %d times %s to file %s \n", cnt, string, filename);
+	exit(0);
+} 
 
 void main()
 {
 	FILE* file;
 	FILE* fileW;
 	int pre[200], cur[6], fut[6];
-	int cnt;
 	char str[100]={0};
 
 	/*打开文件-update mode reading and writing*/
-	fileW = fopen("dataW.txt", "a+");
+	fileW = fopen("dataW.txt", "w");
 	if(fileW == 0)
 	{
 		printf("文件打开失败");
 		return;
 	}
+
+	//定义信号处理函数
+	if(signal(SIGINT, sig_handler) == SIG_ERR){
+		perror("signal errror");
+		exit(EXIT_FAILURE);
+	}
+
 	while(1){
 		//格式化写文件
 		fprintf(fileW,"%d\n",666);
-		printf("\nwrite\n");
-
 #if 1
 		//文件同步 
 		fflush(fileW);
-		fsync(fileW);
+		//fsync(fileW);
 #endif
+		cnt++;
 		sleep(1);
 	}
 
