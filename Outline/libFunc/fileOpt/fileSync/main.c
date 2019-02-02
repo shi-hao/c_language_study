@@ -39,7 +39,7 @@
 #include<signal.h>
 
 static int cnt = 0;
-#define  string     "666"
+#define  string     "i am a test"
 #define  filename   "dataW.txt"
 
 void sig_handler(int signo)
@@ -71,7 +71,7 @@ void main()
 
 	while(1){
 		//格式化写文件
-		fprintf(fileW,"%d\n",666);
+		fprintf(fileW,"%s\n", string);
 #if 1
 		//文件同步 
 		fflush(fileW);
