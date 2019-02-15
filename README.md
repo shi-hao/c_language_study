@@ -2,16 +2,17 @@
 
 ## study the language C
 
-本项目主要包含一些C语言的知识点编程例子，旨在提高编程水平，不断更新中，欢迎交流，互相学习！
+This project contains many c language programming examples, aiming at improving the programming skills,
+welcome your advice and learning from each other.
 
-## 联系方式
+## contact me
 
 e-mail  : shi7631470@163.com
 
-个人主页：www.shihao10.com
+web     ：www.shihao10.com
 
-知乎专栏：https://zhuanlan.zhihu.com/c_86372362
+zhihu   ：https://zhuanlan.zhihu.com/c_86372362
 
-微信号  ：shi706734862
+wechat  ：shi706734862
 
 <img src="https://github.com/shi-hao/c_language_study/blob/master/chatME.jpg" width="250" height="400" />
