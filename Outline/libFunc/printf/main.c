@@ -13,6 +13,14 @@
  *
  * %#.4x
  * 16进制输出，输出4位，不足加前导0
+ *
+ * %c  char  
+ * %s  char*
+ *
+ * %d  char short  int
+ * %ld long 
+ *
+ * %f  float double
  */
 
 #include<stdio.h>
@@ -21,23 +29,16 @@
 void main( int argc, char *agrv[])
 {
 	int var_int=-1;
-	unsigned int var_unint=1;
-	int var2 = 0xff;
 
-	signed char var_char=-1;
-	unsigned char var_unchar=1;
-
+	char var_char=-1;
 
 	short var_short=-1;
-	unsigned short var_unshort=1;
 
-	long int var_long=-1;
-	unsigned long int var_unlong=1;
+	long var_long=-1;
 
 	//float double没有无符号这种类型
 	float var_float=-1.1;
 	double var_double=-1.1;
-
 	double var = 400.56;
 
 
@@ -71,7 +72,7 @@ void main( int argc, char *agrv[])
 	printf("string is = %s\n","i am string");
 
 	//计算顺序
-	printf("var_unint=%u, var_unint++=%u\n",var_unint,var_unint++);
+	printf("var_int=%u, var_int++=%u\n",var_int,var_int++);
 
 	printf("var = %4.6f", var);
 
