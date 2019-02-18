@@ -4,6 +4,8 @@
  * 从stream中读取最多 size-1 个数据，遇到换行和结束符号时，函数返回，并在最末尾添加字符串结束符号'\0',
  * 读出的内容包含换行符
  * 注意：linux下和win下的回车换行是不一样的，请注意。
+ * 
+ * This project read every line of a file then parse them!
  *
  */
 #include<stdio.h>
