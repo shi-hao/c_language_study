@@ -6,6 +6,7 @@
 CC := gcc
 CFLAGS := -c
 
+
 #get all .c files name in current dir
 SRCS := $(wildcard *.c)  
 
@@ -20,7 +21,7 @@ all:$(TARGET)
 
 #compiling all .c files to corresponding .elf excutable files
 $(TARGET): %.elf : %.c
-	$(CC)  $^  -o  $@ 
+	$(CC)  $^ -o  $@ 
 
 
 print:
