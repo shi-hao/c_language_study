@@ -9,10 +9,12 @@
 /*
  *  switch the file descriptor to specific line using fseek()!
  *
- *  1. switch_line_init()
+ *	1. switch_line_init()
+ *
  *	2. switch_line()
- *	3. mfileInfo.file  //access the specific of the file 
- *	   mfileInfo.cur_max_line  //total line of the file
+ *	3. mfileInfo.file  //file descriptor to access the specific line to which switch_line switchs!
+ *	   mfileInfo.cur_max_line  //total line of the file!
+ *
  *	4. switch_line_free
  */
 
