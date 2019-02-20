@@ -19,7 +19,7 @@
 #################################################
 # 可执行文件名称，动态库，静态库名称设置
 ################################################
-PROGRAM := main
+PROGRAM := hash.elf
 lib_static := libmy_static.a
 lib_dynamic := libmy_dynamic.so
 
@@ -61,6 +61,7 @@ endif
 ##########################################
 run:$(OBJ)
 	$(CC)  -o $(PROGRAM)  $(OBJ)  
+	rm $(OBJ)
 	@echo "create program success!"
 
 ############################################
@@ -83,4 +84,4 @@ lib_s:$(OBJ)
 # 清除文件
 ###############################################
 clean:
-	rm *.o *.a *.d *.out main *.so *.a 
+	rm *.o *.a *.d *.out $(PROGRAM) *.so *.a 

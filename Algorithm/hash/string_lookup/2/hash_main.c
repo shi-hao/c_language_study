@@ -18,28 +18,30 @@
 
 /*
  *
- *using link list process the hash value collision!
+ * using link list process the hash value collision!
+ *
+ * hash node struct
  *
  */
 typedef struct hash_table_node{
 
+	unsigned int node_len;//the len of hash node
 	unsigned int line_num; //line number
-	struct hash_table_node * next; 
+	struct hash_table_node* next; 
 
 }hash_table_node;
 
-typedef struct hash_table_head{
-
-	unsigned len;//the len of hash node
-	hash_table_node * next;
-
-}hash_table_head;
+//typedef struct hash_table_head{
+//
+//	unsigned int len;//the len of hash node
+//	hash_table_node * next;
+//
+//}hash_table_head;
 
 //create a hash node
 hash_table_node* create_hash_node(){
 
 	return((hash_table_node* )malloc(sizeof(hash_table_node)));
-
 }
 
 #define   PRIME_TBLSIZE   (1024 * 1024 * 26)
@@ -71,12 +73,13 @@ unsigned int hashpjw(const void *key){
 
 /*
  * hash table insert function
- * 字符串哈希后的哈希值作为数组的索引值，对应数组中的内容是字符串在文件中的行号
+ * 字符串哈希后的哈希值作为数组的索引值，对应数组中的内容是字符串在文件中的行号。
+ *
  * 1.对应哈希值的哈希表中，还没有哈希节点，直接插入新的节点，结束。
  * 2.对应哈希值的哈希表中，有节点，必须遍历所有的节点，看是否有相同字符串，如果有，直接退出，不用插入，
  *   如果全都不同，那么碰撞发生，在最后插入新的节点。
  */
-int insert_node(hash_table_head table[], unsigned char * str, unsigned int row){
+int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 
 	char buff[MAX_CHAR];
 	unsigned int hash;
@@ -85,10 +88,13 @@ int insert_node(hash_table_head table[], unsigned char * str, unsigned int row){
 	hash_table_node * node;
 	unsigned int line_num;
 
+	//hash string
 	hash = hashpjw(str);
+
+	pre = &table[hash];
 	cur = table[hash].next;
 
-	for(;cur != NULL;){
+	for(;cur!=NULL;){
 		line_num = cur->line_num; 
 		switch_line(line_num);
 		fgets(buff, MAX_CHAR, mfileInfo.file);
@@ -114,12 +120,8 @@ int insert_node(hash_table_head table[], unsigned char * str, unsigned int row){
 	node->next = NULL;
 
 	//insert the hash node to the table
-	if(table[hash].len == 0){
-		table[hash].next = node;
-	}else{
-		pre->next = node;
-	}
-	table[hash].len++;
+	pre->next = node;
+	table[hash].node_len++;
 
 #if debug_print
 	printf("\n  insert  table[%d]=%d, %s", hash, row, str);
@@ -128,15 +130,16 @@ int insert_node(hash_table_head table[], unsigned char * str, unsigned int row){
 	return 0;
 }
 
-int lookup_hash_table(hash_table_head table[], unsigned char * str){
+int lookup_hash_table(hash_table_node table[], unsigned char * str){
 	char buff[MAX_CHAR];
 	unsigned int hash;
 	hash_table_node* cur;
 	unsigned int line_num;
 
+	//hash string
 	hash = hashpjw(str);
-	cur = table[hash].next;
 
+	cur = table[hash].next;
 	for(;cur != NULL;){
 		line_num = cur->line_num; 
 		switch_line(line_num);
@@ -157,7 +160,7 @@ int lookup_hash_table(hash_table_head table[], unsigned char * str){
 }
 
 //create hash table
-int create_hash_table(FILE* file, hash_table_head hash_table[]){
+int create_hash_table(FILE* file, hash_table_node hash_table[]){
 	unsigned int row = 0;
 	char buff[MAX_CHAR];
 
@@ -194,7 +197,7 @@ int setStackSize(unsigned int stack_size){
 
 
 //hash table
-hash_table_head hash_table[PRIME_TBLSIZE];
+hash_table_node hash_table[PRIME_TBLSIZE];
 
 /*
  * main
@@ -215,17 +218,18 @@ int main(int argc, char * argv[]){
 		return-1;
 
 	//init the hash_table
-	memset(hash_table, 0, PRIME_TBLSIZE * sizeof(hash_table_head));
+	memset(hash_table, 0, PRIME_TBLSIZE * sizeof(hash_table_node));
 
 	//load the string data base 
 	create_hash_table(data_base, hash_table);
 
-	printf("\n string data base load completes, please inpute a string for check\n");
+	printf("\n string data base load completes, please input a string for lookup \n");
 	//check the input string
 	while(scanf("%s", in_str)){
 		lookup_hash_table(hash_table, in_str);
 	}
 
 	fclose(data_base);
+	switch_line_free();
 	printf("\n exit \n");
 }
