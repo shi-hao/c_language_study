@@ -1,7 +1,4 @@
 /*
- *作者：bleach
- *时间：2014.05.07
- * 
  * struct类型是一种扩展数据类型，需要先定义struct
  * 的具体成员，然后才可以定义相应的变量。
  *
@@ -22,13 +19,13 @@ struct student{
 	char sex;
 	int age;
 	float score;//注意最后的成员也要加分号
-}lili, *plili;/*(1)直接定义法*/
-struct student lilei,*plilei;/*(2)间接定义*/
+}lili;/*(1)直接定义法*/
+struct student lilei;/*(2)间接定义*/
 
 /*(3)缺省定义*/
 struct{
 	int num;
-}test, *ptest;
+}test;
 
 /*(4)使用typedef*/
 typedef struct teacher{
@@ -36,8 +33,7 @@ typedef struct teacher{
 	char name[20];
 	char sex;
 	int age;
-}sTeacher, *psTeacher;//结构体类型，结构体指针
-psTeacher PTeacher;//推荐此种方法
+}sTeacher;//结构体类型，结构体指针
 
 void main()
 {
@@ -64,9 +60,6 @@ void main()
 	printf("MrWang.num=%d\n",MrWang.num);//引用方法1
 	printf("MrZhou.num=%d\n",MrZhou.num);
 	printf("MrLi.name=%s\n",MrLi.name);
-	PTeacher=&MrWang;
-	printf("PTeacher->age=%d\n",PTeacher->age);//引用方法2
-	printf("(*PTeacher).age=%d\n",(*PTeacher).age);//引用方法3
 
 	/*可以在函数体内定义新的结构体类型*/
 	struct inner{
@@ -75,7 +68,8 @@ void main()
 		int c;
 		char d[7];
 	};
-	//struct变量之间可以直接赋值，但是无法无法直接比较各成员是否相等！！
+
+	//struct变量之间可以直接赋值，但是无法直接比较各成员是否相等！！
 	struct inner inner_1={1,1,1,"inner_1"};
 	struct inner inner_2={2,2,2,"inner_2"};
 	printf("inner_1.a=%d\n",inner_1.a);

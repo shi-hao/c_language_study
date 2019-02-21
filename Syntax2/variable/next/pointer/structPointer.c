@@ -1,11 +1,36 @@
 /*
- * struct pointer
- *
+ *struct pointer
  */
-
 
 #include<stdio.h>
 #include<stdlib.h>
+
+/*
+ *定义结构体指针的4种方法
+ */
+struct student{
+	int num;
+	char name[20];
+	char sex;
+	int age;
+	float score;
+}*pstudent;/*(1)直接定义法*/
+struct student *pstudent;/*(2)间接定义*/
+
+/*(3)缺省定义*/
+struct{
+	int num;
+}*ptest;
+
+/*(4)使用typedef*/
+typedef struct teacher{
+	int num;
+	char name[20];
+	char sex;
+	int age;
+}teacher, *psTeacher;//结构体指针
+psTeacher PTeacher;//定义结构体指针
+teacher * PTeacher;
 
 int main(){
 	//定义结构
@@ -13,7 +38,7 @@ int main(){
 		int len;
 		unsigned char* data;
 	};
-	struct st my_st={10, "i am struct my_st"};
+	struct st my_st = {10, "i am struct my_st"};
 	printf("my_st.len = %d\n", my_st.len );
 	printf("my_st.data = %s\n", my_st.data );
 
