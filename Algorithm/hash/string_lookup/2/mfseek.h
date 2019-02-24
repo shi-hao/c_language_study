@@ -15,16 +15,13 @@ struct fileInfo{
 	unsigned int   lineTotal[MAX_LINES];//total char of all previous lines
 };
 
-//struct saving the file infomation
-extern struct fileInfo  mfileInfo;
-
 //switch the file descriptor to specific line
-extern int switch_line(unsigned int line_num);
+extern int switch_line(struct fileInfo* mfileInfo, unsigned int line_num);
 
 //init function 
-extern int switch_line_init(char* filename);
+extern int switch_line_init(char* filename, struct fileInfo* mfileInfo);
 
 //free function
-extern int switch_line_free();
+extern int switch_line_free(struct fileInfo* mfileInfo);
 
 #endif

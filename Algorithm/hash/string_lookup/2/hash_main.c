@@ -79,6 +79,10 @@ unsigned int hashpjw(const void *key){
  * 2.对应哈希值的哈希表中，有节点，必须遍历所有的节点，看是否有相同字符串，如果有，直接退出，不用插入，
  *   如果全都不同，那么碰撞发生，在最后插入新的节点。
  */
+
+//switch_line struct
+struct fileInfo mfileInfo; 
+
 int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 
 	char buff[MAX_CHAR];
@@ -96,7 +100,7 @@ int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 
 	for(;cur!=NULL;){
 		line_num = cur->line_num; 
-		switch_line(line_num);
+		switch_line(&mfileInfo, line_num);
 		fgets(buff, MAX_CHAR, mfileInfo.file);
 		buff[strlen(buff)-1] = 0;//将末尾的换行符号去掉
 		if(strcmp(buff, str) == 0)
@@ -142,7 +146,7 @@ int lookup_hash_table(hash_table_node table[], unsigned char * str){
 	cur = table[hash].next;
 	for(;cur != NULL;){
 		line_num = cur->line_num; 
-		switch_line(line_num);
+		switch_line(&mfileInfo, line_num);
 		fgets(buff, MAX_CHAR, mfileInfo.file);
 		buff[strlen(buff)-1] = 0;//将末尾的换行符号去掉
 		if(strcmp(buff, str) == 0)
@@ -199,11 +203,13 @@ int setStackSize(unsigned int stack_size){
 //hash table
 hash_table_node hash_table[PRIME_TBLSIZE];
 
+
 /*
  * main
  */
 int main(int argc, char * argv[]){
-#define filename "/home/bleach/airack/wordlist_2.txt"
+//#define filename "/home/bleach/airack/wordlist_3.txt"
+#define filename "./data_base.txt"
 
 	FILE* data_base;
 	char in_str[MAX_CHAR];
@@ -214,7 +220,7 @@ int main(int argc, char * argv[]){
 	}
 
 	//load the file
-	if(switch_line_init(filename) < 0)
+	if(switch_line_init(filename, &mfileInfo) < 0)
 		return-1;
 
 	//init the hash_table
@@ -230,6 +236,6 @@ int main(int argc, char * argv[]){
 	}
 
 	fclose(data_base);
-	switch_line_free();
+	switch_line_free(&mfileInfo);
 	printf("\n exit \n");
 }
