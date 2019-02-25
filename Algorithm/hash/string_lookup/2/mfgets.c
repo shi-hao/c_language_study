@@ -4,14 +4,14 @@
 #include<unistd.h>
 #include<sys/resource.h>
 
-#include"mfseek.h"
+#include"mfgets.h"
 
 /*
- *  switch the file descriptor to specific line using fseek()!
+ *  fgets the specific line!!
  *
  *	1. switch_line_init()
  *
- *	2. switch_line()
+ *	2. switch_line_fgets()
  *
  *	3. switch_line_free()
  *
@@ -24,7 +24,7 @@
 
 
 //switch the file descriptor to the line_num line
-int switch_line(struct fileInfo* mfileInfo, unsigned int line_num){
+static int switch_line(struct fileInfo* mfileInfo, unsigned int line_num){
 
 	if(line_num > 0 && line_num <= mfileInfo->cur_max_line)
 	{
@@ -37,24 +37,37 @@ int switch_line(struct fileInfo* mfileInfo, unsigned int line_num){
 	}
 }
 
+//fgets the line line_num
+char* switch_line_fgets(char *s, int size, struct fileInfo* mfileInfo, unsigned int line_num){
+	char* ret;
+
+	//switch line
+	switch_line(mfileInfo, line_num);
+
+	//fgets
+	ret = fgets(s, size, mfileInfo->file);
+
+	return ret;
+}
+
 //read every line of a file 
-static int load_file(struct fileInfo* mfileInfo){
-	char str[BUF_LEN]={0};
+static int switch_line_load_file(struct fileInfo* mfileInfo){
+	char str[SWITCH_BUF_LEN]={0};
 	int rowNum=1;
 
-	while(fgets(str, BUF_LEN, mfileInfo->file)){
+	while(fgets(str, SWITCH_BUF_LEN, mfileInfo->file)){
 		int line_len = strlen(str);
 #if debug_print
 		printf("row %d has %lu char:%s", rowNum, strlen(str), str);
 #endif
 
-		if(line_len > MAX_CHAR){
+		if(line_len > SWITCH_MAX_CHAR){
 			printf("the characters number of this line is beyond the range\n");
 			fclose(mfileInfo->file);
 			return -1;
 		}
 
-		if(rowNum >= MAX_LINES){
+		if(rowNum >= SWITCH_MAX_LINES){
 			printf("\n line number is beyond the range \n");
 			fclose(mfileInfo->file);
 			return -1;
@@ -80,13 +93,13 @@ int switch_line_init(char* filename, struct fileInfo * mfileInfo){
 	}
 
 	//load the file infomation
-	ret = load_file(mfileInfo);
+	ret = switch_line_load_file(mfileInfo);
 
 	return ret;
 }
 
 //free 
-int switch_line_free(struct fileInfo * mfileInfo){
+int switch_line_free(struct fileInfo* mfileInfo){
 
 	fclose(mfileInfo->file);
 	return 0;

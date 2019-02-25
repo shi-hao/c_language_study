@@ -4,15 +4,15 @@
 #include<unistd.h>
 #include<sys/resource.h>
 
-#include"mfseek.h"
+#include"mfgets.h"
 
 /*
  * 应用哈希表算法思路，实现数据库内的字符串检索!
  *
  * 判断输入的字符串是否在数据库中已经存在！
  *
- * 碰撞：
- * 使用链表处理哈希值碰撞问题!!
+ * hash collision：
+ * using the linked list to solve the hash collision!
  *
  */
 
@@ -30,13 +30,6 @@ typedef struct hash_table_node{
 	struct hash_table_node* next; 
 
 }hash_table_node;
-
-//typedef struct hash_table_head{
-//
-//	unsigned int len;//the len of hash node
-//	hash_table_node * next;
-//
-//}hash_table_head;
 
 //create a hash node
 hash_table_node* create_hash_node(){
@@ -85,7 +78,7 @@ struct fileInfo mfileInfo;
 
 int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 
-	char buff[MAX_CHAR];
+	char buff[SWITCH_MAX_CHAR];
 	unsigned int hash;
 	hash_table_node * cur;
 	hash_table_node * pre;
@@ -100,8 +93,9 @@ int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 
 	for(;cur!=NULL;){
 		line_num = cur->line_num; 
-		switch_line(&mfileInfo, line_num);
-		fgets(buff, MAX_CHAR, mfileInfo.file);
+		//fgets the line_num line
+		switch_line_fgets(buff, SWITCH_MAX_CHAR, &mfileInfo, line_num);
+
 		buff[strlen(buff)-1] = 0;//将末尾的换行符号去掉
 		if(strcmp(buff, str) == 0)
 		{
@@ -135,7 +129,7 @@ int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 }
 
 int lookup_hash_table(hash_table_node table[], unsigned char * str){
-	char buff[MAX_CHAR];
+	char buff[SWITCH_MAX_CHAR];
 	unsigned int hash;
 	hash_table_node* cur;
 	unsigned int line_num;
@@ -146,8 +140,8 @@ int lookup_hash_table(hash_table_node table[], unsigned char * str){
 	cur = table[hash].next;
 	for(;cur != NULL;){
 		line_num = cur->line_num; 
-		switch_line(&mfileInfo, line_num);
-		fgets(buff, MAX_CHAR, mfileInfo.file);
+		//fgets the line_num line
+		switch_line_fgets(buff, SWITCH_MAX_CHAR, &mfileInfo, line_num);
 		buff[strlen(buff)-1] = 0;//将末尾的换行符号去掉
 		if(strcmp(buff, str) == 0)
 		{
@@ -166,60 +160,34 @@ int lookup_hash_table(hash_table_node table[], unsigned char * str){
 //create hash table
 int create_hash_table(FILE* file, hash_table_node hash_table[]){
 	unsigned int row = 0;
-	char buff[MAX_CHAR];
+	char buff[SWITCH_MAX_CHAR];
 
-	while(fgets(buff, MAX_CHAR, file)){
+	while(fgets(buff, SWITCH_MAX_CHAR, file)){
 		buff[strlen(buff) - 1] = 0;
 		row++;
 		insert_node(hash_table, buff, row);
 	}
 }
 
-
-/*
- * set the stack size
- */
-int setStackSize(unsigned int stack_size){
-	const rlim_t kStackSize = stack_size * 1024 * 1024;   // min stack size = stack_size MB
-	struct rlimit rl;
-	int result;
-
-	result = getrlimit(RLIMIT_STACK, &rl);
-	if (result == 0)
-	{
-		if (rl.rlim_cur < kStackSize)
-		{
-			rl.rlim_cur = kStackSize;
-			result = setrlimit(RLIMIT_STACK, &rl);
-			if (result != 0)
-			{
-				printf("setrlimit returned result = %d\n", result);
-			}
-		}
-	}
-}
-
-
 //hash table
 hash_table_node hash_table[PRIME_TBLSIZE];
-
 
 /*
  * main
  */
 int main(int argc, char * argv[]){
-//#define filename "/home/bleach/airack/wordlist_3.txt"
-#define filename "./data_base.txt"
+#define filename "/home/bleach/airack/wordlist_2.txt"
+//#define filename "./data_base.txt"
 
 	FILE* data_base;
-	char in_str[MAX_CHAR];
+	char in_str[SWITCH_MAX_CHAR];
 
 	if((data_base = fopen(filename,  "r")) == NULL){
 		printf("\n open data base failed \n");
 		return -1;
 	}
 
-	//load the file
+	//switch line init
 	if(switch_line_init(filename, &mfileInfo) < 0)
 		return-1;
 

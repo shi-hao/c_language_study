@@ -19,7 +19,7 @@
 #################################################
 # 可执行文件名称，动态库，静态库名称设置
 ################################################
-PROGRAM := hash.elf
+PROGRAM := main
 lib_static := libmy_static.a
 lib_dynamic := libmy_dynamic.so
 
@@ -36,7 +36,6 @@ CC := gcc
 CXX := g++            
 CmpPara :=            #编译参数 
 CFLAG :=1              #编译标志 
-CFLAGS :=-g              #编译标志 
 
 
 #####################################################
@@ -61,8 +60,7 @@ endif
 # 编译生成可执行文件 
 ##########################################
 run:$(OBJ)
-	$(CC)  $(CFLAGS) -o $(PROGRAM)  $(OBJ)  
-	rm $(OBJ)
+	$(CC)  -o $(PROGRAM)  $(OBJ)  
 	@echo "create program success!"
 
 ############################################
@@ -85,4 +83,4 @@ lib_s:$(OBJ)
 # 清除文件
 ###############################################
 clean:
-	rm *.o *.a *.d *.out $(PROGRAM) *.so *.a 
+	rm *.o *.a *.d *.out main *.so *.a 
