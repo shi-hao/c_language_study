@@ -84,6 +84,8 @@ static int switch_line_load_file(struct fileInfo* mfileInfo){
 //init 
 int switch_line_init(char* filename, struct fileInfo * mfileInfo){
 	int ret;
+	printf("\nswitch_line_init, max line:%ld, max char one line:%ld\n", SWITCH_MAX_LINES, SWITCH_MAX_CHAR);
+
 	//open file
 	mfileInfo->file = fopen(filename, "r");
 	if(mfileInfo->file <= 0)
@@ -94,6 +96,7 @@ int switch_line_init(char* filename, struct fileInfo * mfileInfo){
 
 	//load the file infomation
 	ret = switch_line_load_file(mfileInfo);
+
 
 	return ret;
 }

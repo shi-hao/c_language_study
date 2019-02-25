@@ -4,10 +4,10 @@
 //debug print control
 #define   debug_print    0
 
-#define     SWITCH_MAX_LINES     (128 * 1024 * 1024)    //max line of a file
-#define		SWITCH_MAX_CHAR      2048 //max character number of one line
-
-#define		SWITCH_BUF_LEN       (SWITCH_MAX_CHAR + 2)  //buf len
+#define  SWITCH_UNSIGNED_INT  (long)4294967296
+#define  SWITCH_MAX_LINES     (long)(16 * 1024 * 1024)    //max line of a file
+#define  SWITCH_MAX_CHAR      (long)(SWITCH_UNSIGNED_INT/SWITCH_MAX_LINES) //max character number of one line
+#define  SWITCH_BUF_LEN       (long)(SWITCH_MAX_CHAR + 2)  //buf len
 
 struct fileInfo{
 	FILE * file; //file descriptor to access the file
