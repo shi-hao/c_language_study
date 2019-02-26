@@ -57,7 +57,7 @@ static int switch_line_load_file(struct fileInfo* mfileInfo){
 
 	while(fgets(str, SWITCH_BUF_LEN, mfileInfo->file)){
 		int line_len = strlen(str);
-#if debug_print
+#if SWTICH_DEBUG_PRINT
 		printf("row %d has %lu char:%s", rowNum, strlen(str), str);
 #endif
 
@@ -96,7 +96,6 @@ int switch_line_init(char* filename, struct fileInfo * mfileInfo){
 
 	//load the file infomation
 	ret = switch_line_load_file(mfileInfo);
-
 
 	return ret;
 }

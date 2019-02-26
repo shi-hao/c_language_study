@@ -16,6 +16,8 @@
  *
  */
 
+#define  DEBUG_PRINT  0
+
 /*
  *
  * using link list process the hash value collision!
@@ -99,12 +101,12 @@ int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 		buff[strlen(buff)-1] = 0;//将末尾的换行符号去掉
 		if(strcmp(buff, str) == 0)
 		{
-#if debug_print
+#if DEBUG_PRINT
 			printf("\n  same string %s, %d:%d", str, line_num, row);
 #endif
 			return -1;
 		}else{
-#if debug_print
+#if DEBUG_PRINT
 			printf("\n  collision line %d:%s, %d:%s", line_num, buff, row, str);
 #endif
 		}
@@ -121,7 +123,7 @@ int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 	pre->next = node;
 	table[hash].node_len++;
 
-#if debug_print
+#if DEBUG_PRINT
 	printf("\n  insert  table[%d]=%d, %s", hash, row, str);
 #endif
 

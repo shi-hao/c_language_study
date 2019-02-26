@@ -2,7 +2,7 @@
 #define _MFSEEK_H_
 
 //debug print control
-#define   debug_print    0
+#define  SWTICH_DEBUG_PRINT    0
 
 #define  SWITCH_UNSIGNED_INT  (long)4294967296
 #define  SWITCH_MAX_LINES     (long)(16 * 1024 * 1024)    //max line of a file

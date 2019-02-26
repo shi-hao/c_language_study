@@ -31,4 +31,3 @@ int main(){
 	printf("a = %ld in %s \n", a, __func__);
 	printf("b = %f in %s \n", b, __func__);
 }
-
