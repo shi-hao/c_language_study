@@ -24,41 +24,43 @@
 
 
 //switch the file descriptor to the line_num line
-static int switch_line(struct fileInfo* mfileInfo, unsigned int line_num){
+static int switch_line(struct fileInfo mfileInfo, unsigned int line_num){
 
-	if(line_num > 0 && line_num <= mfileInfo->cur_max_line)
+	if(line_num > 0 && line_num <= mfileInfo.cur_max_line)
 	{
 		//switch to specific line
-		fseek(mfileInfo->file, mfileInfo->lineTotal[line_num-1], SEEK_SET);
+		fseek(mfileInfo.file, mfileInfo.lineTotal[line_num-1], SEEK_SET);
 		return 0;
 	}else{
-		printf("\n line_num is out of range, current max line is %d\n", mfileInfo->cur_max_line);
+		printf("\n line_num is out of range, current max line is %d\n", mfileInfo.cur_max_line);
 		return -1;
 	}
 }
 
 //fgets the line line_num
-char* switch_line_fgets(char *s, int size, struct fileInfo* mfileInfo, unsigned int line_num){
+char* switch_line_fgets(char *s, int size, struct fileInfo  mfileInfo, unsigned int line_num){
 	char* ret;
 
 	//switch line
 	switch_line(mfileInfo, line_num);
 
 	//fgets
-	ret = fgets(s, size, mfileInfo->file);
+	ret = fgets(s, size, mfileInfo.file);
 
 	return ret;
 }
 
 //read every line of a file 
 static int switch_line_load_file(struct fileInfo* mfileInfo){
-	char str[SWITCH_BUF_LEN]={0};
-	int rowNum=1;
+	char buff[SWITCH_BUF_LEN]={0};
+	int row=1;
+	int line_len=0;
 
-	while(fgets(str, SWITCH_BUF_LEN, mfileInfo->file)){
-		int line_len = strlen(str);
+	while(fgets(buff, SWITCH_BUF_LEN, mfileInfo->file)){
+		line_len = strlen(buff);
+
 #if SWTICH_DEBUG_PRINT
-		printf("row %d has %lu char:%s", rowNum, strlen(str), str);
+		printf("row %d has %lu char:%s", row, strlen(buff), buff);
 #endif
 
 		if(line_len > SWITCH_MAX_CHAR){
@@ -67,16 +69,16 @@ static int switch_line_load_file(struct fileInfo* mfileInfo){
 			return -1;
 		}
 
-		if(rowNum >= SWITCH_MAX_LINES){
+		if(row >= SWITCH_MAX_LINES){
 			printf("\n line number is beyond the range \n");
 			fclose(mfileInfo->file);
 			return -1;
 		}
 
-		mfileInfo->lineTotal[rowNum] = line_len + mfileInfo->lineTotal[rowNum-1];
-		mfileInfo->cur_max_line = rowNum;
+		mfileInfo->lineTotal[row] = line_len + mfileInfo->lineTotal[row-1];
+		mfileInfo->cur_max_line = row;
 
-		rowNum++;
+		row++;
 	}
 	return 0;
 }
@@ -94,6 +96,13 @@ int switch_line_init(char* filename, struct fileInfo * mfileInfo){
 		return -1;
 	}
 
+	//malloc memory
+	if((mfileInfo->lineTotal = (unsigned int*)malloc(sizeof(unsigned int) * SWITCH_MAX_LINES)) == NULL)
+	{
+		printf("fileInfo malloc failed\n");
+		return -1;
+	}
+
 	//load the file infomation
 	ret = switch_line_load_file(mfileInfo);
 
@@ -101,8 +110,9 @@ int switch_line_init(char* filename, struct fileInfo * mfileInfo){
 }
 
 //free 
-int switch_line_free(struct fileInfo* mfileInfo){
+int switch_line_free(struct fileInfo mfileInfo){
 
-	fclose(mfileInfo->file);
+	fclose(mfileInfo.file);
+	free(mfileInfo.lineTotal);
 	return 0;
 }

@@ -12,16 +12,16 @@
 struct fileInfo{
 	FILE * file; //file descriptor to access the file
 	unsigned int   cur_max_line;       //current max line number
-	unsigned int   lineTotal[SWITCH_MAX_LINES];//total char of all previous lines
+	unsigned int*   lineTotal;//total char of all previous lines
 };
 
 //init function 
 extern int switch_line_init(char* filename, struct fileInfo* mfileInfo);
 
 //fgets
-char* switch_line_fgets(char *s, int size, struct fileInfo* mfileInfo, unsigned int line_num);
+char* switch_line_fgets(char *s, int size, struct fileInfo mfileInfo, unsigned int line_num);
 
 //free function
-extern int switch_line_free(struct fileInfo* mfileInfo);
+extern int switch_line_free(struct fileInfo mfileInfo);
 
 #endif

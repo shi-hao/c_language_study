@@ -96,18 +96,18 @@ int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 	for(;cur!=NULL;){
 		line_num = cur->line_num; 
 		//fgets the line_num line
-		switch_line_fgets(buff, SWITCH_MAX_CHAR, &mfileInfo, line_num);
+		switch_line_fgets(buff, SWITCH_MAX_CHAR, mfileInfo, line_num);
 
 		buff[strlen(buff)-1] = 0;//将末尾的换行符号去掉
 		if(strcmp(buff, str) == 0)
 		{
 #if DEBUG_PRINT
-			printf("\n  same string %s, %d:%d", str, line_num, row);
+			printf("\n  same string previous %d:%s, current %d:%s", line_num,str, row, str);
 #endif
 			return -1;
 		}else{
 #if DEBUG_PRINT
-			printf("\n  collision line %d:%s, %d:%s", line_num, buff, row, str);
+			printf("\n  collision line previous %d:%s, current %d:%s", line_num, buff, row, str);
 #endif
 		}
 		pre = cur;
@@ -135,6 +135,7 @@ int lookup_hash_table(hash_table_node table[], unsigned char * str){
 	unsigned int hash;
 	hash_table_node* cur;
 	unsigned int line_num;
+	int ret=-1;
 
 	//hash string
 	hash = hashpjw(str);
@@ -143,20 +144,22 @@ int lookup_hash_table(hash_table_node table[], unsigned char * str){
 	for(;cur != NULL;){
 		line_num = cur->line_num; 
 		//fgets the line_num line
-		switch_line_fgets(buff, SWITCH_MAX_CHAR, &mfileInfo, line_num);
+		switch_line_fgets(buff, SWITCH_MAX_CHAR, mfileInfo, line_num);
 		buff[strlen(buff)-1] = 0;//将末尾的换行符号去掉
 		if(strcmp(buff, str) == 0)
 		{
-			printf("\n  %s is in the data base line %d", str, line_num);
-			return -1;
+			printf("\n %s is in the data base line %d", str, line_num);
+			ret = 0;
 		}else{
 			printf("\n collision!  line %d:%s, %s", line_num, buff, str);
 		}
 		cur = cur->next;
 	}
-	printf("\n %s is not in the data base \n", str);
 
-	return 0;
+	if(ret)
+		printf("\n %s is not in the data base \n", str);
+
+	return ret;
 }
 
 //create hash table
@@ -206,6 +209,6 @@ int main(int argc, char * argv[]){
 	}
 
 	fclose(data_base);
-	switch_line_free(&mfileInfo);
+	switch_line_free(mfileInfo);
 	printf("\n exit \n");
 }

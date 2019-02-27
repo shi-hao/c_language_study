@@ -13,11 +13,8 @@ void main()
 {
 	//定义，初始化
 	char charArray[4]="abc";//char数组的长度要比字符串长度至少大1
-#if 1
 	short shortArray[6];
-#else
-	short shortArray[6]="edf";
-#endif
+
 	int intArray[7]={1,2,4};//初始化部分元素
 	long longArray[8];//不初始化元素
 	float floatArray[9]={0};//初始化所有元素为0
