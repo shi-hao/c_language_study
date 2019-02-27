@@ -42,6 +42,8 @@ int main(){
 	printf("my_st.len = %d\n", my_st.len );
 	printf("my_st.data = %s\n", my_st.data );
 
+	printf("\n sizeof(psTeacher)=%ld\n", sizeof(psTeacher));
+
 	struct st * st_pointer_var;
 	st_pointer_var = &my_st;
 	printf("(*st_pointer_var).len = %d\n", (*st_pointer_var).len );

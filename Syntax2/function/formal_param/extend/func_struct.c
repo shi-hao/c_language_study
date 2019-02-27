@@ -13,6 +13,7 @@ typedef struct person{
 
 
 void function(person me){
+	printf("\nin function()\n");
 	me.age+=1;
 	me.class-=1;
 	me.number+=2;
@@ -23,6 +24,11 @@ void function(person me){
 
 int main(){
 	person me={20, 4, 2};
+	printf("\nbefore call function()\n");
 	printf("\nme.age=%d, me.class=%d, me.number=%d in %s \n", me.age, me.class, me.number, __func__);
+
 	function(me);
+
+	printf("\nafter call function()\n");
+	printf("\nme.age=%d, me.class=%d, me.number=%d in %s \n", me.age, me.class, me.number, __func__);
 }

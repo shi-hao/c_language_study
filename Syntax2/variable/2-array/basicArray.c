@@ -2,12 +2,13 @@
  *  6种数据类型数组 
  *  char[], short[], int[], long[], float[], double[] 
  *	char数组和其他数组最大的区别:可以使用字符串常量赋值。
- *
  */
+
 #include<stdio.h>
 #include<string.h>
 
-#define size   10
+#define   size   10
+
 void main()
 {
 	//定义，初始化
@@ -26,12 +27,10 @@ void main()
 	intArray[5] = 10;
 	floatArray[0] = 1.1; 
 
-
 	//引用
 	printf("%c\n",charArray[0]);
 	printf("%d\n",intArray[1]);
 	printf("%f\n",floatArray[0]);
-
 
 	//数组越界访问
 	printf("%f\n", floatArray[10]);

@@ -35,6 +35,8 @@ void main()
 	p_char = &var_char;
 	p_short = &var_short;
 
+	printf("sizeof(p_char)=%ld\n", sizeof(p_char));
+
 	//* 取内容
 	printf("* p_char  = %#x\n", *p_char);
 	printf("* p_short = %#x\n", *p_short);

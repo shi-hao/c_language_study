@@ -18,6 +18,8 @@ int main()
 
 	//val
 	int val = 0x04030201;
+
+	printf("\nsizeof(p)=%ld\n", sizeof(p));
 	
 	p = &val;//void * = int *
 	printf("val = %#x\n", val);

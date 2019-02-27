@@ -27,6 +27,7 @@ void minus(int a)
 
 void main()
 {
+	printf("\nsizeof(fp)=%ld\n", sizeof(fp));//所有指针类型占用字节数目都相等
 	fp = plus;//赋值
 	fp(2);//引用
 }

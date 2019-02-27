@@ -13,6 +13,7 @@
 #include<stdlib.h>
 
 void function(long a, double b){
+	printf("\nin function()\n");
 	a+=100;
 	printf("a = %ld in %s \n", a, __func__);
 
@@ -25,9 +26,13 @@ int main(){
 	long a=100;
 	double b=1.1;
 
+	printf("\nbefore call function()\n");
+	printf("a = %ld in %s \n", a, __func__);
+	printf("b = %f in %s \n", b, __func__);
+
 	function(a, b);
 
-
+	printf("\nafter call function()\n");
 	printf("a = %ld in %s \n", a, __func__);
 	printf("b = %f in %s \n", b, __func__);
 }

@@ -6,6 +6,7 @@
  * 正/负小数： 12.23  -12.34
  *
  */
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -14,7 +15,6 @@ int main(){
 	//存储字符串常量有两种方式，字符指针和字符数组，char* char[]
 	char* str = "i am char*";
 	char str_array[]="i am char array";
-
 
 	printf("%c \n", 'a');
 	printf("%d \n", 'a');
