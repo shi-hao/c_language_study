@@ -1,11 +1,21 @@
-# c lanuage function
-function formal parameter and return value
+# c language function   
 
-c lanuage function definition:
+<pre>
+c language function formal parameter
 
-return-value-type function-name(formal-parameter-list);
+---------------------------------------------------------
+|basic --> array --> pointer --> pointerArray --> struct|
+---------------------------------------------------------
 
-## formal parameter
+void function(char, short, int, long, float, double);
+
+void function(baisc []);
+
+void function(basic * );
+
+void function(basic * []);
+
+</pre>
 
 
-## return value
+## 

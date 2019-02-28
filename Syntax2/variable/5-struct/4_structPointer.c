@@ -5,24 +5,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-/*
- *定义结构体指针的4种方法
- */
-struct student{
-	int num;
-	char name[20];
-	char sex;
-	int age;
-	float score;
-}*pstudent;/*(1)直接定义法*/
-struct student *pstudent;/*(2)间接定义*/
-
-/*(3)缺省定义*/
-struct{
-	int num;
-}*ptest;
-
-/*(4)使用typedef*/
 typedef struct teacher{
 	int num;
 	char name[20];
@@ -51,4 +33,11 @@ int main(){
 	//结构体指针引用成员的独特之处，推荐此方法
 	printf("st_pointer_var->len = %d\n", st_pointer_var->len );
 	printf("st_pointer_var->data = %s\n", st_pointer_var->data );
+
+	struct st * p;
+	p = (struct st*)malloc(sizeof(struct st));
+	p->len = 0;
+	p->data = "hello";
+
+	printf("\n p->data=%s\n", p->data);
 }
