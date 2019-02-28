@@ -1,11 +1,3 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<unistd.h>
-#include<sys/resource.h>
-
-#include"mfgets.h"
-
 /*
  * 应用哈希表算法思路，实现数据库内的字符串检索!
  *
@@ -14,7 +6,25 @@
  * hash collision：
  * using the linked list to solve the hash collision!
  *
+ * performance:
+ * wc wordlist_2.txt
+ *  14365003  14365003 156511269 wordlist_2.txt
+ *
+ * top
+ *  3680 bleach    20   0  944684 932136   1244 S  89.7  5.7   0:29.80 hash.elf
+ *
+ * O(t)
+ *  time complexity of algorithm is constant.
+ *
  */
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<unistd.h>
+#include<sys/resource.h>
+
+#include"mfgets.h"
 
 #define  DEBUG_PRINT  0
 
@@ -130,6 +140,9 @@ int insert_node(hash_table_node table[], unsigned char * str, unsigned int row){
 	return 0;
 }
 
+/*
+ * look up  the data base whether the input string is in the data base.
+ */
 int lookup_hash_table(hash_table_node table[], unsigned char * str){
 	char buff[SWITCH_MAX_CHAR];
 	unsigned int hash;
