@@ -1,18 +1,10 @@
 /*
  * 指针类型作为函数形式参数
- * char* short* int* long* float* double*
  * struct*
- * 指针作为函数形式参数，实参将自己的地址传递给函数，函数能够改变实际参数的值，这是指针作为
- * 形式参数最大的特点。
  */
+
 #include<stdio.h>
 #include<stdlib.h>
-
-//char* double*
-void function(int* p, double* pp){
-	*p = 20;
-	*pp = 30;
-}
 
 //struct*
 typedef struct stt{
@@ -39,10 +31,6 @@ void main(){
 
 	int c=10;
 	float d=10.1;
-
-	printf("a = %d, b=%f\n", a, b);
-	function(&a, &b);
-	printf("a = %d, b=%f\n", a, b);
 
 	STT stt_test;
 	stt_test.p = &c;

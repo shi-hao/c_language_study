@@ -1,6 +1,8 @@
 /*
  * 指针数组作为函数形式参数！
  * 此处仅仅测试:基本数据类型一级指针的一维数组
+ * char*[]  short*[] int*[] long*[] float*[] double*[]
+ *
  * 典型应用，main函数的第二个参数就是char*[]，char*[] 等价于 char**
  * 
  */
@@ -38,5 +40,4 @@ int main(int argc, char* argv[]){
 
 	function(array, size);
 	function2(array, size);
-
 }

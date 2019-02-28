@@ -11,11 +11,21 @@ void function(char array[], int size){
 
 	for(int cnt=0;cnt<size;cnt++){
 		printf("array[%d]=%c\n", cnt, array[cnt]);
+		array[cnt] = 'L';
 	}
 }
 
 int main(){
-	char test[5]={'a','b','c','c','d'};
+#define  size  5
+	char test[size]={'a','b','c','c','d'};
 
-	function(test, 5);
+	for(int cnt=0;cnt<size;cnt++){
+		printf("test[%d]=%c\n", cnt, test[cnt]);
+	}
+
+	function(test, size);
+
+	for(int cnt=0;cnt<size;cnt++){
+		printf("test[%d]=%c\n", cnt, test[cnt]);
+	}
 }
