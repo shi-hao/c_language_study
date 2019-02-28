@@ -7,14 +7,16 @@
  * using the linked list to solve the hash collision!
  *
  * performance:
- * wc wordlist_2.txt
- *  14365003  14365003 156511269 wordlist_2.txt
+ * database contains 14365003 lines and 156511269 chars.
+ * --wc wordlist_2.txt
+ *    14365003  14365003 156511269 wordlist_2.txt
  *
- * top
- *  3680 bleach    20   0  944684 932136   1244 S  89.7  5.7   0:29.80 hash.elf
+ * this program takes about 30 seconds to load the database.
+ * --top
+ *    3680 bleach    20   0  944684 932136   1244 S  89.7  5.7   0:29.80 hash.elf
  *
- * O(t)
- *  time complexity of algorithm is constant.
+ * after loading the database, time complexity of algorithm is constant.
+ * --O(t) = constant
  *
  */
 
@@ -221,7 +223,7 @@ int main(int argc, char * argv[]){
 		lookup_hash_table(hash_table, in_str);
 	}
 
+	//free all
 	fclose(data_base);
 	switch_line_free(mfileInfo);
-	printf("\n exit \n");
 }
