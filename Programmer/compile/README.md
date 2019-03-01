@@ -1,3 +1,5 @@
+<pre>
+
 文件说明：
 主要有6个文件，如下。
   main.c         --->  源码文件
@@ -21,4 +23,6 @@ gcc -c compile.s -o object.o //由汇编文件生成汇编的目标（机器码�
 gcc main.c -o outline   //由源文件经预处理，编译，汇编，链接生成可执行文件
 或者
 gcc object.o -o outline //链接目标文件生成可执行文件
+
+</pre>
 

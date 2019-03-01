@@ -9,7 +9,7 @@
 ##################################################
 # makefile目标设置
 #################################################
-.PHONY: run  lib_s  lib_d  OBJ_PARA clean
+.PHONY: run  lib_s  lib_d  clean
 #run 默认目标，生成可执行文件
 #lib_s 生成静态库
 #lib_d 生成动态库
@@ -19,9 +19,13 @@
 #################################################
 # 可执行文件名称，动态库，静态库名称设置
 ################################################
-PROGRAM := main
-lib_static := libmy_static.a
-lib_dynamic := libmy_dynamic.so
+PROGRAM:=main
+lib_static_name:=plus
+lib_dynamic_name:=plus
+
+##full library name
+lib_static:="lib$(lib_static_name).a"
+lib_dynamic:="lib$(lib_dynamic_name).so"
 
 ##################################################
 # 路径设置
@@ -34,7 +38,7 @@ HeaderDIR :=  ./include   #头文件路径
 ##################################################
 CC := gcc
 CXX := g++            
-CmpPara :=            #编译参数 
+PARAMETER :=            #编译参数 
 CFLAG :=1              #编译标志 
 
 
@@ -49,10 +53,10 @@ OBJ := $(patsubst %.c, %.o, $(SRC))
 # 编译当前路径下源文件，生成对应的目标文件
 #################################################
 %.o:%.c
-ifeq ($(strip $(CmpPara)),)    #如果没有设置编译参数，则不使用额外的参数生成目标文件
+ifeq ($(strip $(PARAMETER)),)    #如果没有设置编译参数，则不使用额外的参数生成目标文件
 	gcc -c $< -o $@ -I $(HeaderDIR)
 else
-	gcc -c  $(CmpPara) $< -o $@ -I $(HeaderDIR)
+	gcc -c  $(PARAMETER) $< -o $@ -I $(HeaderDIR)
 endif 
 	
 
@@ -66,7 +70,6 @@ run:$(OBJ)
 ############################################
 # 生成动态库 
 ############################################
-#lib_d: CmpPara += -fPIC
 lib_d: $(SRC)
 	$(CC) -shared -fPIC -o $(lib_dynamic)  $(SRC)
 	@echo "lib_d success!"
@@ -75,7 +78,7 @@ lib_d: $(SRC)
 # 生成静态库
 #############################################
 lib_s:$(OBJ)
-	ar  -r $(lib_static)  $(OBJ)  	
+	ar -r $(lib_static)  $(OBJ)  	
 	@echo "lib_s success!"
 	
 
