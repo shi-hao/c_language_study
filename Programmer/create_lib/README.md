@@ -24,5 +24,14 @@ C程序编译和运行
    with -z nodefaultlib ).  
 </pre>
 
+以ubuntu16为例，打开文件/etc/ld.so.conf文件，内容如下：
+<pre>
+include /etc/ld.so.conf.d/*.conf
+/usr/lib/
+</pre>
+第一条表示本文件包含目录 /etc/ld.so.conf.d/下的所有的.conf文件
+第二条是一个具体的目录
+
+
 linux ldd查看elf文件需要的库。  
 ldd    elf-file    
