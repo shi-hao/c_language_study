@@ -52,7 +52,12 @@ void main()
 #endif
 
 #if 0
-	*p_char='a';//是否允许改变内容？--->segmentation fault 段错误
+	/*
+	 当使用char*去存储字符串时，是不允许对字符串进行内容修改的，使用数组
+	 存储字符串可以，因为使用char*时，字符串实际上在程序的全局只读数据段内
+	 存储，char*只是对其引用
+	 */
+	*(p_char+1)='a';//是否允许改变内容？--->segmentation fault 段错误
 #endif
 
 	p_char = test();//函数返回字符串 
