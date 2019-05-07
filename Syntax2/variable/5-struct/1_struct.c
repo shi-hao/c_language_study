@@ -11,6 +11,7 @@
  *
  */
 #include<stdio.h>
+#include<string.h>
 
 //定义
 struct student{
@@ -46,7 +47,7 @@ void main()
 		.age=30
 	};//gcc扩展语法
 	sTeacher MrLi ={
-	num:1,
+num:1,
 	name:"Li",
 	sex:0,
 	age:40
@@ -66,10 +67,10 @@ void main()
 		int a;
 		int b;
 		int c;
-		char d[7];
+		char d[8];
 	};
 
-	//struct变量之间可以直接赋值，但是无法直接比较各成员是否相等！！
+	//struct变量之间可以直接赋值，结构体的各个域会相互赋值，struct st a, b;  a=b;
 	struct inner inner_1={1,1,1,"inner_1"};
 	struct inner inner_2={2,2,2,"inner_2"};
 	printf("inner_1.a=%d\n",inner_1.a);
@@ -77,4 +78,35 @@ void main()
 	inner_1=inner_2;/*同类型的结构体变量之间可以互相赋值*/
 	printf("inner_1.a=%d\n",inner_1.a);
 	printf("inner_1.d=%s\n",inner_1.d);
+
+
+	/*
+	 *<compare two instances of structs for equality>
+	 *(1)using operator "==", this is wrong, syntax error!!
+	 *(2)uisng function "memcmp()", this is unsafe, maybe wrong, not recommended, because
+	 *   the struct variables have padding bytes, their values maybe uncertain!!
+	 *(3)compare the members one by one, this sames not good, but is a right method
+	 */
+
+	//using memcmp() for example
+	struct foo{
+		char a;
+		/* padding */
+		double d;
+		/* padding */
+		char e;
+		/* padding */
+		int f;
+	};
+	struct foo foo_1={1,5.4,1,10}, foo_2={1,5.4,1,10};
+	if(memcmp(&foo_1, &foo_2, sizeof(struct foo)) == 0)//this is wrong
+	{
+		printf("struct euqal using memcmp\n");
+	}
+
+	if((foo_1.a == foo_2.a) && (foo_1.d == foo_2.d) && (foo_1.e == foo_2.e) && (foo_1.f == foo_2.f))
+	{
+		printf("struct euqal using members compare\n");
+	}
+
 }
