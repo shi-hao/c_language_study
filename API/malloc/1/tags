@@ -1,0 +1,44 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+array	main.c	/^	struct item * array;$/;"	m	struct:set	typeref:struct:set::item	file:	access:public
+buf	main.c	/^	struct buffer buf;$/;"	m	struct:c_2	typeref:struct:c_2::buffer	file:	access:public
+buff	main.c	/^	struct buffer * buff;$/;"	m	struct:item	typeref:struct:item::buffer	file:	access:public
+buffer	main.c	/^typedef struct buffer{$/;"	s	file:
+buffer	main.c	/^} buffer;$/;"	t	typeref:struct:buffer	file:
+buffer::capacity	main.c	/^	int capacity;$/;"	m	struct:buffer	file:	access:public
+buffer::data	main.c	/^	unsigned char* data;$/;"	m	struct:buffer	file:	access:public
+buffer::len	main.c	/^	int len;$/;"	m	struct:buffer	file:	access:public
+buffer::offset	main.c	/^	int offset;$/;"	m	struct:buffer	file:	access:public
+buffers	main.c	/^	struct context_buffer * buffers;$/;"	m	struct:c_2	typeref:struct:c_2::context_buffer	file:	access:public
+c_2	main.c	/^typedef struct c_2{$/;"	s	file:
+c_2	main.c	/^} c_2;$/;"	t	typeref:struct:c_2	file:
+c_2::buf	main.c	/^	struct buffer buf;$/;"	m	struct:c_2	typeref:struct:c_2::buffer	file:	access:public
+c_2::buffers	main.c	/^	struct context_buffer * buffers;$/;"	m	struct:c_2	typeref:struct:c_2::context_buffer	file:	access:public
+capacity	main.c	/^	int capacity;$/;"	m	struct:buffer	file:	access:public
+capacity	main.c	/^	int capacity;$/;"	m	struct:set	file:	access:public
+capacity_usr	main.c	40;"	d	file:
+context_buffer	main.c	/^typedef struct context_buffer{$/;"	s	file:
+context_buffer	main.c	/^} context_buffer;$/;"	t	typeref:struct:context_buffer	file:
+context_buffer::incoming_data	main.c	/^	buffer incoming_data;$/;"	m	struct:context_buffer	file:	access:public
+context_buffer::other_data	main.c	/^	buffer other_data;$/;"	m	struct:context_buffer	file:	access:public
+context_buffer::outcoming_data	main.c	/^	buffer outcoming_data;$/;"	m	struct:context_buffer	file:	access:public
+data	main.c	/^	unsigned char* data;$/;"	m	struct:buffer	file:	access:public
+incoming_data	main.c	/^	buffer incoming_data;$/;"	m	struct:context_buffer	file:	access:public
+item	main.c	/^typedef struct item{$/;"	s	file:
+item::buff	main.c	/^	struct buffer * buff;$/;"	m	struct:item	typeref:struct:item::buffer	file:	access:public
+len	main.c	/^	int len;$/;"	m	struct:buffer	file:	access:public
+len	main.c	/^	int len;$/;"	m	struct:set	file:	access:public
+main	main.c	/^void main()$/;"	f
+offset	main.c	/^	int offset;$/;"	m	struct:buffer	file:	access:public
+offset	main.c	/^	int offset;$/;"	m	struct:set	file:	access:public
+other_data	main.c	/^	buffer other_data;$/;"	m	struct:context_buffer	file:	access:public
+outcoming_data	main.c	/^	buffer outcoming_data;$/;"	m	struct:context_buffer	file:	access:public
+set	main.c	/^typedef struct set{$/;"	s	file:
+set::array	main.c	/^	struct item * array;$/;"	m	struct:set	typeref:struct:set::item	file:	access:public
+set::capacity	main.c	/^	int capacity;$/;"	m	struct:set	file:	access:public
+set::len	main.c	/^	int len;$/;"	m	struct:set	file:	access:public
+set::offset	main.c	/^	int offset;$/;"	m	struct:set	file:	access:public
