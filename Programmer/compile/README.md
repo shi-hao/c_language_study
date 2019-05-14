@@ -24,5 +24,7 @@ gcc main.c -o outline   //由源文件经预处理，编译，汇编，链接生
 或者
 gcc object.o -o outline //链接目标文件生成可执行文件
 
+C语言编译过程?结果工具说明？ldd，readelf等
+
 </pre>
 
