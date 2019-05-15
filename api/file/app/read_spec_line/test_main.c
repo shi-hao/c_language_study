@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include <time.h> 
 
+#include"mfgets.h"
+
 int mfgets(char* buf, int len, FILE* file, int line_num){
 	int row=0;
 
