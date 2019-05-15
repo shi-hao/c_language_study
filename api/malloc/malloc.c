@@ -20,10 +20,11 @@ void main()
 	char * var1;
 	int  * var2;
 
-	struct st{
+	typedef struct _item_{
 		int   len;
 		char* name;
-	} *myst;
+	}item;
+	item * my_item;
 
 	//相当于定义了10个char型变量，效果等价于char array[10]
 	var1 = (char*)malloc(sizeof(var1) * capacity);
@@ -32,7 +33,7 @@ void main()
 	var2 = (int *)malloc(sizeof(var2) * capacity);
 
 	//相当于定义了10个struct st结构体变量，效果等价于struct st array[10]
-	myst = (struct st *)malloc(sizeof(struct st) * capacity);
+	my_item = (item *)malloc(sizeof(item) * capacity);
 
 	var1[0] = 25;
 	var2[0] = 26;
@@ -41,38 +42,39 @@ void main()
 	printf("\n var2[0] = %d \n", var2[0]);
 
 	//第一个元素
-	myst[0].len = 0;
-	myst[0].name = "i am myst.name";
+	my_item[0].len = 0;
+	my_item[0].name = "i am my_item.name";
 
 	//第一个元素
-	myst->name = "i am myst.name";
-	myst->len = 10;
+	my_item->name = "i am my_item.name";
+	my_item->len = 10;
 
-	printf("\n myst[0].len = %d \n", myst[0].len);
-	printf("\n myst[0].name = %s \n", myst->name);
+	printf("\n my_item[0].len = %d \n", my_item[0].len);
+	printf("\n my_item[0].name = %s \n", my_item->name);
 
 	//第二个元素
-	(myst + 1)->name = "i am another myst.name";
-	(myst + 1)->len = 10;
+	(my_item + 1)->name = "i am another my_item.name";
+	(my_item + 1)->len = 10;
 
-	printf("\n (myst+1)->len = %d \n", myst[1].len);
-	printf("\n (myst+1)->.name = %s \n", (myst+1)->name);
+	printf("\n (my_item+1)->len = %d \n", my_item[1].len);
+	printf("\n (my_item+1)->.name = %s \n", (my_item+1)->name);
 
 
 	////////////////////////////////////////////
-	struct myst_set{
+	typedef struct _set_{
 		int len;
 		int offset;
-		struct st * head;
-	} myst_set_obj;
+		item * head;
+	} set;
+	set my_set;
 
-	myst_set_obj.len = capacity;
-	myst_set_obj.offset = 0;
-	myst_set_obj.head = myst;
+	my_set.len = capacity;
+	my_set.offset = 0;
+	my_set.head = my_item;
 
-	for(;myst_set_obj.offset < myst_set_obj.len;){
-		printf("\n  %s \n", (myst_set_obj.head + myst_set_obj.offset)->name);
-		myst_set_obj.offset++;
+	for(;my_set.offset < my_set.len;){
+		printf("\n  %s \n", (my_set.head + my_set.offset)->name);
+		my_set.offset++;
 	}
-	free(myst_set_obj.head);
+	free(my_set.head);
 }
