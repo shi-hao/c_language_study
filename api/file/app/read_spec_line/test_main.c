@@ -3,6 +3,7 @@
 
 #include"mfgets.h"
 
+//get the specific line
 int mfgets(char* buf, int len, FILE* file, int line_num){
 	int row=0;
 
@@ -16,9 +17,9 @@ int mfgets(char* buf, int len, FILE* file, int line_num){
 
 
 int main(int argc, char* argv[]){
-#define file_name "/home/bleach/airack/wordlist_2.txt"
-#define buf_len   1024
-#define test_cnt  10
+#define  file_name  "/home/bleach/airack/wordlist_2.txt"
+#define  buf_len    1024
+#define  test_cnt   10
 
 	char buf[buf_len];
 	struct fileInfo mfileInfo;
@@ -38,7 +39,7 @@ int main(int argc, char* argv[]){
 
 	t = clock() - t; 
 	time_taken = ((double)t)/CLOCKS_PER_SEC; 
-	printf("took %f seconds to execute \n", time_taken); 
+	printf("switch_line_fgets() took %f seconds to execute \n", time_taken); 
 
 	file = fopen(file_name, "r");
 	t = clock(); 
@@ -51,7 +52,7 @@ int main(int argc, char* argv[]){
 
 	t = clock() - t; 
 	time_taken = ((double)t)/CLOCKS_PER_SEC; 
-	printf("took %f seconds to execute \n", time_taken); 
+	printf("mfgets() took %f seconds to execute \n", time_taken); 
 
 	switch_line_free(mfileInfo);
 }
