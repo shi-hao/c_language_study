@@ -48,11 +48,13 @@ static int parse_line(char* str, char* p[], int param_num){
 #else
 	int line_len = strlen(str) - 1;//减去末尾的换行符号
 #endif
+
 	char* in = str;
 	int text_len = 0;
 	int pos = 0;
 
 	for(;line_len>0;in++){
+		//len plus 
 		line_len--;
 
 		//cal the text char len
@@ -65,7 +67,7 @@ static int parse_line(char* str, char* p[], int param_num){
 		//Token_Comment or Token_Delimiter or last char
 		if(text_len > 0){
 			printf("param len = %d \n", text_len);
-
+#if 0
 			if(pos<param_num){
 				if((p[pos] = (char*)malloc(text_len+1)) <= 0){
 					trace_print("malloc error\n");
@@ -75,6 +77,7 @@ static int parse_line(char* str, char* p[], int param_num){
 				*(p[pos]+text_len) = '\0';
 				pos++;
 			}
+#endif
 		}
 		text_len = 0;
 
@@ -113,7 +116,9 @@ void main()
 	while(fgets(buf, buf_len, file)){
 		printf(" %lu char:%s",  strlen(buf), buf);
 		parse_line(buf, p, max_param);
+#if 0
 		parse_cmd(p, &my_setting);
+#endif
 	}
 
 	/*关闭文件*/

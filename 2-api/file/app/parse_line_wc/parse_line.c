@@ -18,6 +18,7 @@
 
 
 unsigned int total_char;
+unsigned int total_char_human;
 unsigned int total_word;
 unsigned int total_line;
 
@@ -29,6 +30,7 @@ static int parse_line(char* str){
 	int pos = 0;
 	int line_len = strlen(str);
 
+	total_char+=line_len;
 	for(;line_len>0;in++){
 		//length--
 		line_len--;
@@ -43,7 +45,7 @@ static int parse_line(char* str){
 		//
 		if(text_len > 0){
 			total_word++;
-			total_char+=text_len;
+			total_char_human+=text_len;
 		}
 		text_len = 0;
 
@@ -78,7 +80,11 @@ void main()
 		parse_line(buf);
 	}
 
-	printf("line:%d, word:%d, char:%d", total_line, total_word, total_char);
+	printf("\n line:%d, word:%d, char_human:%d, char:%d \n", 
+			total_line, total_word, total_char_human, total_char);
+
+	//system wc command
+	system("wc  "filename);
 
 	/*关闭文件*/
 	fclose(file);
