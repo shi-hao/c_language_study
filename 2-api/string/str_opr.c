@@ -71,12 +71,12 @@ void main()
 	/*字符查找*/
 	printf("字符串查找：\n");
 	pos = strchr("i am a", 'a');
-	printf("pos = %x\n", (int)pos);
+	printf("pos = %lx\n", (long)pos);
 
 	pos = strrchr("i am a", 'a');
-	printf("pos = %x\n", (int)pos);
+	printf("pos = %lx\n", (long)pos);
 
 	//找不到如何返回值
 	pos = strchr("i am a", 'x');
-	printf("pos = %x\n", (int)pos);
+	printf("pos = %lx\n", (long)pos);
 }
