@@ -27,8 +27,4 @@ int main(){
 
 	example.age = &a;
 	check(example);
-
-
-
-
 }

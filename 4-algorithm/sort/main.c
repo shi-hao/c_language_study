@@ -23,8 +23,6 @@ int insert_sort(unsigned char* data, int size){
 //快速排序
 
 
-
-
 int main(){
 #define data_size  10
 
