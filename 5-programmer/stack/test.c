@@ -11,7 +11,6 @@ typedef struct menber{
 
 smember example;
 
-
 void check(smember s){
 	int cnt=0;
 	*s.age = 9;

@@ -10,6 +10,7 @@
  */
 #include<stdio.h>
 #include<sys/resource.h>
+
 /*递归，测试stack的大小*/
 void Recur()
 {
