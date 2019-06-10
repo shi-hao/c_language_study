@@ -21,6 +21,7 @@ PreOrder traversal
 InOrder traversal    
 PostOrder traversal    
   
+<pre>
 用一段伪代码来说明先序中序后序：  
 struct bin_tree_node{  
 	int value;  
@@ -57,6 +58,7 @@ post_order(bin_tree_node node){
 		return 0;  
 	}  
 }  
+</pre>
   
 ## breadth-first traversal  
 level order traversal    
