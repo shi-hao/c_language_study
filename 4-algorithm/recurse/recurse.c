@@ -7,10 +7,13 @@
 
 //阶乘
 long factorial(unsigned int i){
+	printf("i = %d\n", i);
 	if(i <= 1){
 		return 1;
 	}else{
-		return(i * factorial(i - 1));
+		long res = i * factorial(i - 1);
+		printf("i = %d\n", i);
+		return(res);
 	}
 }
 
