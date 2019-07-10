@@ -32,5 +32,4 @@ int main(){
 	printf("\n varr = var>>16 %#.2x \n", varr=var>>16);
 	printf("\n varr = var>>8 %#.2x \n", varr=var>>8);
 	printf("\n varr = var %#.2x \n", varr=var);
-
 }
