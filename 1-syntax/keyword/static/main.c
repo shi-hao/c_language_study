@@ -9,6 +9,8 @@ int main(){
 	DataProc(1, 2);
 	DataProc(1, 2);
 	printf("glo_sum = %d\n", glo_sum);
+
+	//无法引用static全局变量
 	//printf("sta_glo_sum = %d\n", sta_glo_sum);
 }
 
