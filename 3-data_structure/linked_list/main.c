@@ -16,18 +16,18 @@
 int main(){
 
 	linked_list mlist;
-	list_elem_p node;
+	list_node* node;
 
 	list_init(&mlist);
 
-	node = create_list_elem();
+	node = create_list_node();
 	if(node != 0){
 		node->pri = 10;
 		memcpy(node->data, "i am node 1", strlen("i am node 1"));
 		list_insert(&mlist, node);
 	}
 
-	node = create_list_elem();
+	node = create_list_node();
 	if(node != 0){
 		node->pri = 11;
 		memcpy(node->data, "i am node 2", strlen("i am node 2"));
