@@ -21,6 +21,8 @@
  * %ld long 
  *
  * %f  float double
+ *
+ * %p  指针
  */
 
 #include<stdio.h>
@@ -35,6 +37,8 @@ void main( int argc, char *agrv[])
 	short var_short=-1;
 
 	long var_long=-1;
+
+	int* p=&var_int;
 
 	//float double没有无符号这种类型
 	float var_float=-1.1;
@@ -61,20 +65,24 @@ void main( int argc, char *agrv[])
 	printf("var_short=%#x\n",var_short);
 	printf("400=%#04x\n",400);
 
-	/*  八进制输出 %x */
+	/*  八进制输出 %o */
 	//%o
 	printf("var_int=%#o\n",var_int);
 
 	/* 字符输出 %c %s */
-	//%c  %s  char
+	//%c char
 	printf("var_char=%c\n",var_char=65);
 	//%s char*
 	printf("string is = %s\n","i am string");
 
+	/* %p 指针 */
+	printf("int* p=%p\n", p);
+	printf("int* p=%.16lx\n", (long)p);
+
 	//计算顺序
 	printf("var_int=%u, var_int++=%u\n",var_int,var_int++);
 
-	printf("var = %4.6f", var);
+	printf("var = %4.6f\n", var);
 
 	if(argc >= 2)
 	{
