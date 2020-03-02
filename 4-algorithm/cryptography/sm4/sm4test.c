@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 		printf("%02x ", output[i]);
 	printf("\n");
 
-	output[15] = 0;
+	//output[15] = 0x0;
 
 	//decrypt testing
 	sm4_setkey_dec(&ctx, key);
