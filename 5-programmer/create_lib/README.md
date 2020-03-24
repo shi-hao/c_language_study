@@ -1,58 +1,49 @@
-# 动态库，静态库  
+# 动态库，静态库    
   
-1.动态链接和静态链接的区别    
-动态库不会编译进入可执行文件，可执行文件在运行的时候会在运行环境下动态加载库文件。  
-静态连接会直接将库打包进入可执行文件。    
-
-2.动/静态库名
-静态库命名一般遵循如下规则：
-以lib开头，以.a结束，lib + name + .a  
-
-动态库命名一般遵循如下规则：
-以lib开头，加上自定义名字，加上.so，再加上时间版本号等信息。
-
-2.编译时指定库
-使用gcc编译可执行程序时，使用如下参数来指定动/静态库
--l  指定库名    
--L  指定库的路径    
   
-3.运行时加载库
-静态库加载：
-因为静态库是和可执行程序打包在一块的，所以，静态库不需要动态加载。
-
-动态库加载：
-编译时使用的动态库名称和运行时加载的动态库名称必须保持一致，不然运行时会报错，
-提示无法找到对应的动态库。
-
-**动态库个管理**
-(1)动态库和可执行程序是分离的，由系统保存和管理。
-(2)当编译好动态库后，使用make install安装动态库，make会将动态库文件拷贝到系统
-   指定的安装目录下，然后调用ldconfig，在安装目录下生成一个软链接，链接到实际
-   库文件，软连接一般都是动态库文件名的缩写，比如libmy.so.3，软链接一般是libmy.so。
-   或者可以直接拷贝库文件到指定的目录下，然后ldconfig手动更新动态库软链接。
-(3)当编译程序，需要用到某个动态库时，直接使用编译参数-lmy就可以链接到libmy.so.3。
-
-**动态库保存路径**
-系统搜索动态库路径！  
-<pre>
-1. Directories listed in the executable’s rpath .  
-
-2. Directories in the LD_LIBRARY_PATH environment variable, which contains  
-   colon-separated list of directories (e.g., /path/to/libdir:/another/path )  
-
-3. Directories listed in the executable’s runpath .  
-
-4. The list of directories in the file /etc/ld.so.conf . This file can include other  
-   files, but it is basically a list of directories - one per line.  
-
-5. Default system libraries - usually /lib and /usr/lib (skipped if compiled  
-   with -z nodefaultlib ).  
-</pre>
-
-
-**多版本动态库并存**
-
-
-**查看elf文件动态库信息**
-linux ldd查看elf文件需要的库。  
-ldd    elf-file    
+## shared libraries  
+  
+### shared libraries names and directories  
+1.动态库命名规则  
+以lib开头，加上自定义名字，加上.so，再加上时间版本号等信息。  
+  
+2.动态库默认路径  
+linux系统下，动态库的默认路径一般是/lib和/usr/lib，以及/etc/ld.so.conf文件  
+中包含的路径  
+  
+3.动态库运行时加载  
+程序在执行时，系统会在指定的目录下搜索需要的动态库，找到后，加载动态库，  
+找不到则会报库无法找到的错误。  
+  
+在实际使用中，每次搜索文件夹是很低效的，linux引入了缓存机制，使用ldconfig  
+工具会将指定文件夹下的动态库生成一个缓存文件(/etc/ld.so.cache)，缓存文件中  
+是动态库和路径的对应关系，比如动态库libssl.so.1.1在路径/usr/lib下，缓存文件  
+中会生成一条映射 libssl.so.1.1  /usr/lib/lissl.so.1.1，这样系统在加载动态库  
+时，可以查找缓存文件，提高效率。  
+  
+缓存文件中查找失败，是否会继续查找系统路径？  
+  
+4.动态库编译时调用  
+当编译可执行文件时，使用-l指定库名，使用-L指定库路径，可以不指定路径，系统  
+会去默认路径下查找库(查找/etc/ld.so.cache文件)。  
+  
+为了提高使用的方便性，linux会在库路径下为动态库生成软件链接，比如库libssl.so.1.1，  
+生成一个软件链接libssl.so指向库文件，当用户在编译可执行文件时，直接使用-lssl就可  
+以调用到libssl.so.1.1，十分方便。  
+  
+5.动态库安装  
+最简单的动态库安装方法是，将生成的动态库复制到系统库目录下，然后使用ldconfig更新  
+库缓存。  
+  
+6.系统环境变量  
+linux系统下有一些环境变量，会影响到动态库的路径，比如LD_LIBRARY_PATH，这个环境变量  
+的优先级比较高，在程序执行时，会想搜索环境变量文件夹的库。  
+  
+**多版本动态库并存**  
+多个版本的动态库，版本之间不兼容，不同的应用程序依赖于不同版本的库，如何解决这个问题？  
+将多个版本的库复制到系统路径下即可，注意，在编译可执行文件时，要分清楚使用的是哪个版  
+本的动态库，注意文件链接的问题！！  
+  
+**查看elf文件动态库信息**  
+linux ldd查看elf文件需要的库。    
+ldd    elf-file      
