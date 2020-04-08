@@ -1,6 +1,5 @@
 # 动态库，静态库    
   
-  
 ## shared libraries  
   
 ### shared libraries names and directories  
