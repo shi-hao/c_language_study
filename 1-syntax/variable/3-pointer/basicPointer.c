@@ -9,11 +9,31 @@
 
 /*
  * 程序返回字符串，字符串是否被释放?
+ *
+ * 当使用字符串常量时，如果没有给常量分配存储空间，
+ * 那么字符串常量存储在全局数据区，比如，如下。
+ * char* name = "i am bob";//name只是个指针变量，并未给字符串分配存储空间
+ * char namearry[] = "i am bob";//namearry是数组，本身为字符串分配了存储空间
+ * 在程序中直接使用字符串，其实也没有给字符串分配存储空间。
  */
+
 char* test()
 {
-	return("i am good");
+	return("i am tommy");
 }
+
+char* test1()
+{
+	char* name = "tommy";
+	return name;//字符串存储在全局数据区，没有语法问题
+}
+
+char* test2()
+{
+	char namearry[] = {"tommymy"};
+	return namearry;//返回函数内部变量地址，segmentation fault
+}
+
 
 /*
  *main()
@@ -61,6 +81,12 @@ void main()
 #endif
 
 	p_char = test();//函数返回字符串 
+	printf("%s\n", p_char);
+
+	p_char = test1();//函数返回字符串 
+	printf("%s\n", p_char);
+
+	p_char = test2();//函数返回字符串 
 	printf("%s\n", p_char);
 
 	p_char = "good" "well" "better";  //字符串的合并 
