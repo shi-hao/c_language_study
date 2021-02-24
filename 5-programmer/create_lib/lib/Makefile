@@ -25,7 +25,7 @@ lib_dynamic_name:=plus
 
 ##full library name
 lib_static:="lib$(lib_static_name).a"
-lib_dynamic:="lib$(lib_dynamic_name).so"
+lib_dynamic:="lib$(lib_dynamic_name).1.0.so"
 
 ##################################################
 # 路径设置
