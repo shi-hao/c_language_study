@@ -2,18 +2,18 @@
     
 ## 动态库 
     
-### 1.动态库命名规则    
+1.动态库命名规则    
 以lib开头，加上自定义名字，加上.so，再加上时间版本号等信息。    
   
-### 2.生成动态库  
+2.生成动态库  
     
-### 3.动态库安装    
+3.动态库安装    
 动态库安装，即将生成的动态库复制到系统库目录下，然后使用ldconfig更新库缓存。    
 linux系统下，动态库的默认路径一般是/lib和/usr/lib，/usr/local/lib    
   
 ldconfig工具？  
     
-### 4.程序编译时调用动态库    
+4.程序编译时调用动态库    
 调用方法：
 使用-l参数调用，如动态库是libmyssl-1.0.0.so，那么在调用时可以使用-libmyssl-1.0.0来使用动  
 态库，即可以省略掉开头的lib和结尾的.so  
@@ -49,7 +49,7 @@ LD_LIBRARY_PATH=/home/transang/my_libs gcc foo.o bar.o -o foo
 Method 2: add flag -L<dir_path> to gcc when linking. For example: gcc
 -L/home/transang/my_libs foo.o bar.o -o foo.
   
-### 5.程序运行时加载动态库    
+5.程序运行时加载动态库    
 当启动一个ELF可执行文件时，系统会启动库加载器来加载程序需要的库，加载器的名字  
 一般是/lib/ld-linux.so.X，其中X是版本号，加载器会加载所有其他所需的动态库。  
   
